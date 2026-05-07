@@ -52,10 +52,93 @@ const directions = {
   },
 };
 
+const professionProfiles = {
+  communication: {
+    name: "Маркетолог",
+    learnName: "маркетолога",
+    matchLabel: "совместимость",
+    salary: "72 000 ₽",
+    traits: ["работа в команде", "креативность", "гибкое мышление", "эмпатия", "исследование людей"],
+    description:
+      "Маркетолог делает так, чтобы нужная группа людей узнала о продукте или бизнесе, поняла его ценность и захотела им воспользоваться. В этой профессии важно чувствовать людей, ясно формулировать смыслы и превращать наблюдения в понятные действия.",
+    duties:
+      "Специалист изучает аудиторию, запускает рекламные кампании, пишет гипотезы, анализирует реакцию людей и помогает продукту говорить с рынком на понятном языке.",
+    learn: ["базовая цифровая грамотность", "умение понимать аудиторию", "готовность тестировать гипотезы в срок"],
+    talent: "презентация",
+    talentText:
+      "Скорее всего, вы умеете доносить мысль так, чтобы другим было проще увидеть ценность идеи. Таким людям подходит роль, где нужно объяснять, убеждать и связывать продукт с потребностями людей.",
+    qualities: ["хорошо чувствуете людей", "умеете объяснять сложное простыми словами", "можете организовать встречу или обсуждение", "справляетесь с задачами, где нужно придумать нестандартный ход"],
+  },
+  creative: {
+    name: "UX/UI-дизайнер",
+    learnName: "UX/UI-дизайнера",
+    matchLabel: "совместимость",
+    salary: "78 000 ₽",
+    traits: ["визуальное мышление", "эмпатия", "структура", "внимание к деталям", "пользовательский опыт"],
+    description:
+      "UX/UI-дизайнер проектирует цифровые интерфейсы так, чтобы человеку было удобно, понятно и приятно ими пользоваться. Здесь важны наблюдательность, вкус и способность превращать хаос пожеланий в ясный экран.",
+    duties:
+      "Специалист изучает пользователей, собирает прототипы, продумывает сценарии, визуально оформляет экраны и помогает команде сделать продукт проще и полезнее.",
+    learn: ["базовая работа с компьютером", "готовность изучать поведение людей", "аккуратность и внимание к деталям"],
+    talent: "визуальное мышление",
+    talentText:
+      "У вас есть потенциал видеть, как устроен опыт человека: что мешает, где непонятно, где можно сделать лучше. Именно таким людям часто подходит дизайн интерфейсов.",
+    qualities: ["замечаете детали", "думаете о том, как будет удобно человеку", "умеете собирать разрозненное в систему", "готовы пробовать и улучшать"],
+  },
+  analytical: {
+    name: "Аналитик данных",
+    learnName: "аналитика данных",
+    matchLabel: "совместимость",
+    salary: "85 000 ₽",
+    traits: ["логика", "структурность", "внимательность", "поиск закономерностей", "работа с данными"],
+    description:
+      "Аналитик данных помогает бизнесу принимать решения на фактах, а не на ощущениях. Он собирает данные, ищет закономерности, объясняет выводы и показывает, где у продукта или процесса есть точки роста.",
+    duties:
+      "Специалист работает с таблицами и дашбордами, проверяет гипотезы, считает показатели и переводит цифры в понятные рекомендации для команды.",
+    learn: ["уверенная работа с компьютером", "базовая математика", "готовность разбираться в таблицах и логике процессов"],
+    talent: "структурное мышление",
+    talentText:
+      "Похоже, вам важно видеть причинно-следственные связи и понимать, почему что-то происходит. У таких людей есть хороший потенциал в аналитике.",
+    qualities: ["любите ясность", "умеете замечать закономерности", "не боитесь разбираться в деталях", "можете объяснить выводы без лишней воды"],
+  },
+  system: {
+    name: "Тестировщик",
+    learnName: "тестировщика",
+    matchLabel: "совместимость",
+    salary: "70 000 ₽",
+    traits: ["внимательность", "системность", "качество", "логика", "ответственность"],
+    description:
+      "Тестировщик проверяет цифровые продукты и помогает команде находить ошибки до того, как с ними столкнется пользователь. Эта профессия подходит людям, которые умеют видеть слабые места и спокойно доводить задачу до качества.",
+    duties:
+      "Специалист проверяет сайты и приложения, описывает ошибки, повторяет сценарии пользователя и помогает разработчикам выпускать более стабильный продукт.",
+    learn: ["базовая компьютерная грамотность", "внимательность к инструкциям", "готовность работать с повторяющимися проверками"],
+    talent: "качество и порядок",
+    talentText:
+      "У вас есть потенциал замечать то, что другие пропускают. Именно таким людям подходит тестирование: там ценятся внимательность, спокойствие и умение думать сценариями.",
+    qualities: ["замечаете несостыковки", "любите понятные критерии", "можете спокойно проверять детали", "умеете описывать проблему конкретно"],
+  },
+  technical: {
+    name: "Frontend-разработчик",
+    learnName: "frontend-разработчика",
+    matchLabel: "совместимость",
+    salary: "95 000 ₽",
+    traits: ["логика", "создание интерфейсов", "техническое мышление", "самостоятельность", "решение задач"],
+    description:
+      "Frontend-разработчик создает видимую часть сайтов и приложений: экраны, кнопки, формы, анимации и взаимодействия. Это роль для людей, которым нравится собирать работающие решения и видеть результат сразу.",
+    duties:
+      "Специалист пишет код интерфейсов, соединяет дизайн с логикой продукта, исправляет ошибки и делает так, чтобы пользователь мог удобно пользоваться сервисом.",
+    learn: ["готовность изучать код постепенно", "логическое мышление", "умение доводить задачу до работающего результата"],
+    talent: "сборка решений",
+    talentText:
+      "Похоже, вам важно не просто обсуждать идеи, а собирать что-то рабочее. У таких людей есть потенциал в разработке, если идти через понятную практику.",
+    qualities: ["любите разбираться в инструментах", "не боитесь пошагового обучения", "хотите видеть конкретный результат", "готовы искать решение, если с первого раза не получилось"],
+  },
+};
+
 const screens = [
   {
     type: "intro",
-    eyebrow: "Квиз на 5 минут",
+    eyebrow: "Квиз на 6 минут",
     title: "Кажется, вы устали не от жизни, а от того, как она сейчас устроена?",
     text: "Сначала настроим диагностику под вас: зададим несколько коротких вопросов про состояние, энергию и контекст. Потом покажем, что сейчас забирает силы и куда можно двигаться.",
     button: "Настроить диагностику",
@@ -96,7 +179,7 @@ const screens = [
     eyebrow: "Персональная настройка",
     title: "{name}, настраиваем диагностику под ваши ответы",
     text: "Сверяем состояние, уровень энергии и тон дальнейших вопросов.",
-    duration: 1700,
+    duration: 17000,
     steps: ["Считываем общий фон", "Подбираем сценарии", "Убираем лишние вопросы"],
   },
   {
@@ -214,7 +297,7 @@ const screens = [
     eyebrow: "Анализируем приоритеты",
     title: "Собираем вашу карту мотивации",
     text: "Смотрим, что сильнее влияет на выбор: деньги, интерес, стабильность или свобода.",
-    duration: 1500,
+    duration: 16000,
     steps: ["Сверяем приоритеты", "Ищем главный конфликт", "Готовим следующий блок"],
   },
   {
@@ -352,7 +435,7 @@ const screens = [
     eyebrow: "Анализируем результаты",
     title: "Собираем персональный профиль",
     text: "Соединяем ответы, интерактивы и карту направлений в один результат.",
-    duration: 2100,
+    duration: 19000,
     steps: ["Считаем 5 осей состояния", "Подбираем архетип", "Собираем 2–3 направления"],
   },
   {
@@ -372,6 +455,7 @@ const screens = [
 const totalScreens = screens.length;
 
 const screenEl = document.querySelector("#quizScreen");
+const phoneEl = document.querySelector(".phone");
 const backButton = document.querySelector("#backButton");
 const stepLabel = document.querySelector("#stepLabel");
 const timeLabel = document.querySelector("#timeLabel");
@@ -380,8 +464,9 @@ const progressFill = document.querySelector("#progressFill");
 function render() {
   const screen = screens[state.step];
   clearTimers();
+  phoneEl.classList.toggle("result-mode", screen.type === "result");
   stepLabel.textContent = `${state.step + 1} из ${totalScreens}`;
-  timeLabel.textContent = state.step < screens.length - 2 ? "5 минут" : "результат";
+  timeLabel.textContent = state.step < screens.length - 2 ? "6 минут" : "результат";
   progressFill.style.width = `${((state.step + 1) / totalScreens) * 100}%`;
   backButton.disabled = state.step === 0;
 
@@ -454,6 +539,9 @@ function renderLoader(screen) {
   const wrap = baseContent(screen);
   const card = el("div", "loader-card");
   card.appendChild(el("div", "loader-orbit", "<span></span><span></span><span></span>"));
+  const loaderProgress = el("div", "loader-progress", "<span></span>");
+  loaderProgress.style.setProperty("--loader-duration", `${screen.duration || 1600}ms`);
+  card.appendChild(loaderProgress);
   const list = el("div", "loader-steps");
   screen.steps.forEach((step, index) => {
     list.appendChild(el("div", `loader-step${index === 0 ? " active" : ""}`, step));
@@ -865,36 +953,98 @@ function renderLead(screen) {
 
 function renderResult() {
   const result = calculateResult();
-  const wrap = el("div", "content");
-  wrap.appendChild(el("div", "eyebrow", `${state.lead.name || "Ваш"} профиль готов`));
-  const hero = el("div", "result-hero");
-  hero.appendChild(el("h2", "", result.title));
-  hero.appendChild(el("p", "", result.text));
-  hero.appendChild(el("div", "tags", result.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")));
-  wrap.appendChild(hero);
+  const [topProfession, secondProfession, thirdProfession] = result.professions;
+  const wrap = el("div", "result-page");
+  wrap.appendChild(el("div", "result-kicker", `${state.lead.name || "Ваш"} результат готов`));
 
-  const scoreCard = el("div", "result-card score-row");
-  Object.entries(result.normalizedScores).forEach(([key, value]) => {
-    const line = el("div", "score-line");
-    line.innerHTML = `<span><b>${axes[key]}</b><b>${value}%</b></span><div class="mini-track"><div class="mini-fill" style="width:${value}%"></div></div>`;
-    scoreCard.appendChild(line);
-  });
-  wrap.appendChild(scoreCard);
+  const topGrid = el("div", "result-top-grid");
+  const matchCard = el("section", "result-card-light profession-main");
+  matchCard.innerHTML = `
+    <div>
+      <p class="result-muted">Вам подходят профессии:</p>
+      <h2>${topProfession.name}</h2>
+    </div>
+    <div class="match-badge">
+      <span>${topProfession.matchLabel}</span>
+      <strong>${topProfession.percent}%</strong>
+    </div>
+    <div class="chips-row">
+      ${topProfession.traits.map((trait) => `<span>${trait}</span>`).join("")}
+    </div>
+  `;
+  topGrid.appendChild(matchCard);
 
-  wrap.appendChild(el("h2", "", "Подходящие направления"));
-  const list = el("div", "direction-list");
-  result.directions.forEach((direction) => {
-    const node = el("div", "direction");
-    node.appendChild(el("strong", "", direction.title));
-    node.appendChild(el("p", "", direction.roles));
-    node.appendChild(el("p", "", direction.note));
-    list.appendChild(node);
-  });
-  wrap.appendChild(list);
+  const topThree = el("section", "result-card-dark top-three");
+  topThree.innerHTML = `
+    <p class="result-muted dark">Топ-3 по вашим ответам</p>
+    ${result.professions
+      .map(
+        (profession, index) => `
+          <div class="top-profession">
+            <span>${index + 1}</span>
+            <strong>${profession.name}</strong>
+            <b>${profession.percent}%</b>
+          </div>
+        `,
+      )
+      .join("")}
+  `;
+  topGrid.appendChild(topThree);
+  wrap.appendChild(topGrid);
+
+  const middleGrid = el("div", "result-two-grid");
+  const duties = el("section", "result-card-light profession-copy");
+  duties.innerHTML = `
+    <h2>Чем занимается специалист</h2>
+    <p>${topProfession.description}</p>
+    <p>${topProfession.duties}</p>
+  `;
+  middleGrid.appendChild(duties);
+
+  const skills = el("section", "result-card-dark skills-card");
+  skills.innerHTML = `
+    <div class="salary-box">
+      <span>Средняя зарплата начинающего специалиста в первый год работы:</span>
+      <strong>от ${topProfession.salary}</strong>
+    </div>
+    <h3>Что надо знать и уметь, чтобы выучиться на ${topProfession.learnName}:</h3>
+    <ul>
+      ${topProfession.learn.map((item) => `<li>${item}</li>`).join("")}
+    </ul>
+    <div class="gradient-note">Здесь не нужны глубокие знания заранее: важнее интерес, регулярная практика и понятный план перехода</div>
+  `;
+  middleGrid.appendChild(skills);
+  wrap.appendChild(middleGrid);
+
+  wrap.appendChild(el("h2", "result-section-title", "Почему мы рекомендуем вам эти профессии"));
+
+  const reasonGrid = el("div", "result-two-grid");
+  const archetype = el("section", "result-card-light archetype-card");
+  archetype.innerHTML = `
+    <p class="result-muted">Ваш архетип:</p>
+    <h2>${result.title}</h2>
+    <p>${result.text}</p>
+    <p><b>${result.potential}</b></p>
+    <p><span class="blue-text">Именно таким людям подходят эти профессии:</span> здесь можно опереться на уже имеющиеся качества и постепенно перевести их в новую деятельность.</p>
+  `;
+  reasonGrid.appendChild(archetype);
+
+  const qualities = el("section", "result-card-dark qualities-card");
+  qualities.innerHTML = `
+    <div class="photo-strip" aria-hidden="true">
+      <span></span>
+    </div>
+    <h3>У вас уже есть базовые качества для работы:</h3>
+    <div class="qualities-list">
+      ${topProfession.qualities.map((item) => `<p>${item}</p>`).join("")}
+    </div>
+  `;
+  reasonGrid.appendChild(qualities);
+  wrap.appendChild(reasonGrid);
 
   if (result.interactions.length) {
-    wrap.appendChild(el("h2", "", "Что показали интерактивы"));
-    const insightList = el("div", "interaction-list");
+    wrap.appendChild(el("h2", "result-section-title", "Что показали интерактивы"));
+    const insightList = el("div", "interaction-list result-insights");
     result.interactions.forEach((item) => {
       const node = el("div", "interaction-card");
       node.appendChild(el("strong", "", item.title));
@@ -1034,7 +1184,7 @@ function drawCanvas(ctx, canvas, points = []) {
   ctx.stroke();
   if (!points.length) {
     ctx.fillStyle = "#69706f";
-    ctx.font = "700 15px Inter, sans-serif";
+    ctx.font = "700 15px Graphik LC TT, Graphik, sans-serif";
     ctx.fillText("Нарисуйте линию здесь", 74, 92);
   }
 }
@@ -1046,36 +1196,37 @@ function calculateResult() {
   const normalizedScores = Object.fromEntries(
     Object.keys(axes).map((key) => [key, Math.min(100, Math.round(((scores[key] || 0) / 14) * 100))]),
   );
-  const directionKeys = Object.keys(directions)
-    .sort((a, b) => (scores[b] || 0) - (scores[a] || 0))
-    .slice(0, 3);
-  const fallback = ["analytical", "creative", "system"];
-  const chosen = directionKeys.some((key) => scores[key]) ? directionKeys : fallback;
+  const professions = buildProfessionMatches(scores);
 
   const archetypes = {
     energy: {
       title: "Застряли в режиме выживания",
       text: "Вы не просто устали. Ответы показывают, что текущая деятельность регулярно забирает больше сил, чем возвращает. Если ничего не менять, отдых будет помогать все короче.",
+      potential: "Ваш потенциал — в умении замечать, где система перегружает человека, и искать более спокойный, понятный формат работы.",
       tags: ["энергия на нуле", "нужен новый ритм", "важен бережный переход"],
     },
     meaning: {
       title: "Устали от чужого сценария",
       text: "Главный сигнал — потеря смысла. Похоже, ваша текущая деятельность больше не совпадает с тем, что вам важно делать и развивать дальше.",
+      potential: "Ваш потенциал — в способности быстро чувствовать, где есть польза, интерес и настоящая включенность.",
       tags: ["мало смысла", "хочется пользы", "нужна новая траектория"],
     },
     growth: {
       title: "Переросли текущую роль",
       text: "В ваших ответах много напряжения вокруг роста и отдачи. Похоже, вы уже уперлись в потолок текущей деятельности и хотите видеть более честную связь усилий с результатом.",
+      potential: "Ваш потенциал — в готовности расти, монетизировать опыт и выбирать среду, где усилия превращаются в результат.",
       tags: ["потолок дохода", "мало роста", "можно монетизировать опыт"],
     },
     autonomy: {
       title: "Устали жить в чужом режиме",
       text: "Вам важно больше влияния на задачи, ритм и решения. Текущая деятельность, похоже, слишком часто оставляет вас в позиции исполнителя без пространства для выбора.",
+      potential: "Ваш потенциал — в самостоятельности: вам подходят роли, где можно принимать решения и видеть вклад в общий результат.",
       tags: ["мало влияния", "нужны границы", "подойдет самостоятельная роль"],
     },
     readiness: {
       title: "Готовы к смене, но нужен безопасный план",
       text: "Вы уже видите, что прежний формат не работает. Главная задача сейчас — не бросаться в первое обучение, а выбрать направление и маршрут с понятным риском.",
+      potential: "Ваш потенциал — в зрелом подходе к переменам: вы не хотите хаоса, вам нужен маршрут, который можно проверить и пройти по шагам.",
       tags: ["готовность есть", "важен план", "нужна проверка гипотезы"],
     },
   };
@@ -1083,9 +1234,38 @@ function calculateResult() {
   return {
     ...archetypes[dominant],
     normalizedScores,
-    directions: chosen.map((key) => directions[key]),
+    professions,
     interactions: buildInteractionInsights(scores),
   };
+}
+
+function buildProfessionMatches(scores) {
+  const professionKeys = Object.keys(professionProfiles);
+  const maxDirectionScore = Math.max(...professionKeys.map((key) => scores[key] || 0), 1);
+  const modifiers = {
+    analytical: Math.round((scores.growth || 0) * 1.2 + (scores.readiness || 0) * 0.7),
+    creative: Math.round((scores.meaning || 0) * 1.1 + (scores.autonomy || 0) * 0.6),
+    communication: Math.round((scores.meaning || 0) * 0.8 + (scores.growth || 0) * 0.8),
+    system: Math.round((scores.energy || 0) * 0.5 + (scores.readiness || 0) * 0.8),
+    technical: Math.round((scores.readiness || 0) * 1.1 + (scores.autonomy || 0) * 0.7),
+  };
+
+  return professionKeys
+    .map((key) => {
+      const directionScore = scores[key] || 0;
+      const raw = 66 + Math.round((directionScore / maxDirectionScore) * 19) + Math.min(10, modifiers[key] || 0);
+      return {
+        ...professionProfiles[key],
+        key,
+        percent: Math.max(68, Math.min(96, raw)),
+      };
+    })
+    .sort((a, b) => b.percent - a.percent)
+    .slice(0, 3)
+    .map((profile, index) => ({
+      ...profile,
+      percent: Math.max(67, profile.percent - index * 2),
+    }));
 }
 
 function recomputeScores() {
