@@ -60,12 +60,19 @@ const professionProfiles = {
     learnName: "специалиста по нейросетям для бизнеса",
     matchLabel: "совместимость",
     salary: "90 000 ₽",
+    salaryPotential: "160 000–240 000 ₽",
     traits: ["коммуникация", "продуктовое мышление", "гибкость", "понимание задач бизнеса", "работа с AI"],
     description:
       "Специалист по нейросетям для бизнеса помогает командам внедрять AI-инструменты в повседневные процессы: тексты, аналитику, клиентский сервис, маркетинг, обучение и операционные задачи.",
     duties:
       "Он разбирает бизнес-задачу, подбирает подходящий AI-сервис, пишет промпты, тестирует сценарии и объясняет команде, как использовать инструмент без хаоса.",
     learn: ["базовая цифровая грамотность", "умение формулировать задачи", "готовность тестировать AI-инструменты на практике"],
+    realTasks: ["собрать AI-бота для поддержки клиентов", "ускорить подготовку постов и писем", "описать понятную инструкцию для команды"],
+    vacancies: [
+      { title: "Менеджер Digital-проектов", company: "Lead Zeppelin", salary: "80 000–140 000 ₽", meta: "hh.ru, Москва, можно удаленно" },
+      { title: "Программист AI-вайбкодер", company: "Бизнес Решение", salary: "30 000–80 000 ₽", meta: "hh.ru, AI-инструменты" },
+      { title: "Junior Маркетолог", company: "ИП Рыбаков", salary: "от 50 000 ₽", meta: "hh.ru, без опыта" },
+    ],
     talent: "перевод задач на понятный язык",
     talentText:
       "Похоже, вам близко связывать людей, задачи и инструменты. Таким людям подходит направление, где нужно не просто знать нейросети, а понимать, как они помогают бизнесу.",
@@ -76,12 +83,19 @@ const professionProfiles = {
     learnName: "графического дизайнера с AI-инструментами",
     matchLabel: "совместимость",
     salary: "85 000 ₽",
+    salaryPotential: "140 000–220 000 ₽",
     traits: ["визуальное мышление", "насмотренность", "креатив", "композиция", "AI-графика"],
     description:
       "Графический дизайнер создает визуальный язык брендов, презентаций, соцсетей, упаковки и рекламных материалов. AI-инструменты помогают быстрее искать идеи, собирать варианты и усиливать визуал.",
     duties:
       "Специалист подбирает стиль, работает с цветом и типографикой, создает макеты и адаптирует их под разные задачи бизнеса.",
     learn: ["базовая работа с компьютером", "готовность развивать вкус", "интерес к визуальным AI-инструментам"],
+    realTasks: ["сделать баннер для акции", "оформить презентацию для клиента", "собрать визуал для соцсетей в едином стиле"],
+    vacancies: [
+      { title: "UI/UX дизайнер Junior/Middle", company: "Современные информационные технологии", salary: "от 65 000 ₽", meta: "hh.ru, удаленно" },
+      { title: "Digital Designer UX/UI Junior", company: "NeuroCity", salary: "от 60 000 ₽", meta: "hh.ru, без опыта" },
+      { title: "Web/графический дизайнер", company: "HR-агентство A2", salary: "50 000–70 000 ₽", meta: "hh.ru, можно удаленно" },
+    ],
     talent: "визуальная сборка смысла",
     talentText:
       "У вас есть потенциал замечать настроение, форму и детали. Таким людям подходит дизайн, где можно превращать идею в понятную картинку.",
@@ -92,12 +106,19 @@ const professionProfiles = {
     learnName: "Machine Learning Engineer",
     matchLabel: "совместимость",
     salary: "120 000 ₽",
+    salaryPotential: "220 000–350 000 ₽",
     traits: ["аналитика", "математическая логика", "данные", "модели", "исследование гипотез"],
     description:
       "Machine Learning Engineer работает с данными и моделями машинного обучения: помогает системам находить закономерности, делать прогнозы и автоматизировать сложные решения.",
     duties:
       "Специалист готовит данные, обучает модели, проверяет качество результата и помогает внедрять AI-решения в продукты и процессы.",
     learn: ["готовность разбираться в данных", "интерес к логике и моделям", "регулярная практика программирования"],
+    realTasks: ["найти причину падения продаж в данных", "собрать прогноз спроса", "проверить, какая гипотеза дала результат"],
+    vacancies: [
+      { title: "Junior Data Analyst", company: "evrone.ru", salary: "до 100 000 ₽", meta: "hh.ru, можно удаленно" },
+      { title: "Младший аналитик данных", company: "ИП Панина", salary: "от 80 000 ₽", meta: "hh.ru, без опыта" },
+      { title: "Data Engineer / ETL Developer", company: "FOM GROUP", salary: "2 500–4 500 $", meta: "hh.ru, рост после опыта" },
+    ],
     talent: "поиск закономерностей",
     talentText:
       "Похоже, вам интересно не просто видеть результат, а понимать, почему он получился. Это важное качество для работы с данными и AI-моделями.",
@@ -108,12 +129,19 @@ const professionProfiles = {
     learnName: "инженера по тестированию с AI-инструментами",
     matchLabel: "совместимость",
     salary: "85 000 ₽",
+    salaryPotential: "150 000–230 000 ₽",
     traits: ["внимательность", "качество", "сценарии", "логика", "AI-помощники"],
     description:
       "Инженер по тестированию проверяет сайты, приложения и сервисы, чтобы пользователи не сталкивались с ошибками. AI помогает быстрее готовить сценарии проверок и анализировать результаты.",
     duties:
       "Специалист ищет баги, описывает проблемы, проверяет логику продукта и помогает команде выпускать более стабильные решения.",
     learn: ["базовая компьютерная грамотность", "внимательность к инструкциям", "готовность работать по сценариям"],
+    realTasks: ["проверить оплату в приложении", "описать баг так, чтобы разработчик быстро понял", "пройти сценарий пользователя перед релизом"],
+    vacancies: [
+      { title: "Junior QA Engineer", company: "evrone.ru", salary: "до 100 000 ₽", meta: "hh.ru, можно удаленно" },
+      { title: "Тестировщик ПО / QA", company: "Shark Ads", salary: "от 30 000 ₽", meta: "hh.ru, без опыта" },
+      { title: "Начинающий тестировщик", company: "ServiOn", salary: "105 000–170 000 ₽", meta: "hh.ru, без опыта" },
+    ],
     talent: "замечать слабые места",
     talentText:
       "У вас есть потенциал видеть то, что другие пропускают. Это сильная база для тестирования, где ценятся спокойствие, внимательность и умение думать сценариями.",
@@ -124,12 +152,19 @@ const professionProfiles = {
     learnName: "Python-разработчика с AI-инструментами",
     matchLabel: "совместимость",
     salary: "110 000 ₽",
+    salaryPotential: "200 000–320 000 ₽",
     traits: ["логика", "код", "автоматизация", "AI-инструменты", "решение задач"],
     description:
       "Python-разработчик создает программы, сервисы, автоматизации и инструменты, которые решают конкретные задачи. AI помогает быстрее писать код, искать ошибки и собирать прототипы.",
     duties:
       "Специалист пишет код, подключает данные и сервисы, автоматизирует повторяющиеся процессы и собирает рабочие цифровые решения.",
     learn: ["готовность изучать код постепенно", "логическое мышление", "умение доводить задачу до работающего результата"],
+    realTasks: ["написать скрипт, который сам собирает отчет", "подключить API к сервису", "исправить ошибку и выкатить обновление"],
+    vacancies: [
+      { title: "Junior Python-developer", company: "Workmate", salary: "от 70 000 ₽", meta: "hh.ru, без опыта, удаленно" },
+      { title: "Программист Python junior", company: "CDNvideo", salary: "90 000–140 000 ₽", meta: "hh.ru, Москва" },
+      { title: "Python-разработчик / AI-интегратор", company: "SCorp", salary: "от 40 000 ₽", meta: "hh.ru, без опыта, удаленно" },
+    ],
     talent: "сборка работающих решений",
     talentText:
       "Похоже, вам важно не просто обсуждать идеи, а собирать что-то рабочее. У таких людей есть потенциал в разработке, если идти через понятную практику.",
@@ -140,8 +175,8 @@ const professionProfiles = {
 const screens = [
   {
     type: "intro",
-    title: "Бесплатная диагностика внутреннего состояния",
-    text: "Устали? Потеряли интерес? Чувствуете, что живете на автопилоте? Это может быть не просто усталостью, а признаком эмоционального выгорания. С этим важно разобраться.",
+    title: "Устали? Потеряли интерес? Чувствуете, что живете на автопилоте?",
+    text: "Это может быть не просто усталостью, а признаком эмоционального выгорания. С этим важно разобраться.",
     points: [
       "Настроим диагностику под вас",
       "Найдем, куда уходят силы и интерес",
@@ -149,8 +184,7 @@ const screens = [
       "Соберем профиль и план действий",
     ],
     proof: {
-      passed: "18 430 человек уже прошли",
-      active: "127 проходят прямо сейчас",
+      active: "127 человек проходят прямо сейчас",
     },
     gifts: [
       { label: "Скидка до 60% на обучение в Skillbox" },
@@ -167,41 +201,11 @@ const screens = [
   {
     type: "proof",
     title: "А мы — Skillbox. Помогаем людям находить новую профессию и двигаться к ней с самого нуля понятными шагами.",
-    button: "Приятно познакомиться",
+    button: "Приятно познакомиться, Skillbox",
     cards: [
       { icon: "🎓", title: "141 000+", text: "выпускников уже нашли работу мечты" },
       { icon: "🤝", title: "700+", text: "компаний доверяют выпускникам Skillbox" },
-      { icon: "⭐", title: "№1", text: "по качеству обучения, по данным сайта Skillbox" },
-    ],
-    reviews: [
-      {
-        name: "Марина",
-        meta: "31 год, Казань",
-        title: "Появился понятный маршрут",
-        rating: 5,
-        text: "Я долго думала, что уже поздно менять сферу. На курсе стало понятно, куда двигаться и какие шаги делать каждую неделю.",
-      },
-      {
-        name: "Илья",
-        meta: "27 лет, Москва",
-        title: "Практика дала уверенность",
-        rating: 5,
-        text: "Больше всего помогли практика и обратная связь. Не просто смотришь уроки, а собираешь портфолио и видишь прогресс.",
-      },
-      {
-        name: "Екатерина",
-        meta: "35 лет, Санкт-Петербург",
-        title: "Получилось учиться в своем темпе",
-        rating: 5,
-        text: "Мне было важно учиться без резкого рывка из жизни. В Skillbox получилось идти в своем темпе и постепенно выйти на новое направление.",
-      },
-      {
-        name: "Андрей",
-        meta: "29 лет, Новосибирск",
-        title: "Первые проекты многое изменили",
-        rating: 5,
-        text: "После первых проектов появилась уверенность: я не просто прохожу курс, а правда осваиваю профессию.",
-      },
+      { icon: "⭐", title: "№1", text: "по качеству обучения" },
     ],
   },
   {
@@ -299,7 +303,7 @@ const screens = [
     eyebrow: "Настройка под вас",
     title: "{name}, настраиваем диагностику под ваш контекст",
     text: "Учитываем ваш ритм, фон и то, что хочется вернуть в жизнь.",
-    duration: 17000,
+    duration: 15000,
     steps: ["Собираем эмоциональный фон", "Определяем зоны напряжения", "Настраиваем логику результата"],
   },
   {
@@ -362,26 +366,13 @@ const screens = [
     ],
   },
   {
-    type: "pair_compare",
-    eyebrow: "Восстановление",
-    title: "Что сильнее всего мешает восстановиться?",
-    text: "Сравним варианты попарно. Выбирайте то, что мешает сильнее — после нескольких выборов мы соберем рейтинг.",
-    key: "recoveryBlockers",
-    rounds: 6,
-    items: [
-      { id: "thoughts", icon: "🌀", label: "Мысли крутятся", axis: "energy" },
-      { id: "guilt", icon: "😔", label: "Вина за отдых", axis: "autonomy" },
-      { id: "future", icon: "💸", label: "Тревога за деньги", axis: "growth" },
-      { id: "unknown", icon: "🧩", label: "Не знаю, с чего начать", axis: "readiness" },
-    ],
-  },
-  {
     type: "single",
     eyebrow: "Будущее",
     title: "Какой уровень дохода у вас сейчас?",
     text: "Это поможет понять, насколько сильно деньги добавляют напряжения и какой рост будет ощутимым.",
     key: "currentIncome",
     options: [
+      { icon: "🧊", label: "Сейчас нет дохода", scores: { growth: 2, readiness: 1 } },
       { icon: "🌱", label: "До 60 000 ₽", scores: { growth: 1 } },
       { icon: "💼", label: "60 000–100 000 ₽", scores: { growth: 2 } },
       { icon: "📈", label: "100 000–150 000 ₽", scores: { growth: 2, readiness: 1 } },
@@ -509,16 +500,16 @@ const screens = [
   },
   {
     type: "work_sliders",
-    eyebrow: "Формат работы",
-    title: "Что вам комфортнее?",
-    text: "Передвиньте каждый слайдер ближе к тому полюсу, который вам больше подходит.",
+    eyebrow: "Рабочая среда",
+    title: "В каком формате вам легче раскрыться?",
+    text: "Сравним не профессии, а ощущения от работы: с кем, как и в каком темпе вам комфортнее двигаться.",
     key: "workFormat",
     sliders: [
-      { id: "people_systems", left: "С людьми", right: "С задачами/системами", leftDirection: "communication", rightDirection: "system" },
-      { id: "new_improve", left: "Придумывать новое", right: "Улучшать существующее", leftDirection: "creative", rightDirection: "system" },
-      { id: "fast_deep", left: "Быстро тестировать", right: "Глубоко доводить", leftDirection: "technical", rightDirection: "analytical" },
-      { id: "text_numbers", left: "Тексты и смыслы", right: "Цифры и логика", leftDirection: "communication", rightDirection: "analytical" },
-      { id: "expert_coord", left: "Эксперт-исполнитель", right: "Координировать процессы", leftDirection: "technical", rightDirection: "system" },
+      { id: "people_systems", left: "Чаще общаться с людьми", right: "Больше работать с задачами и системами", leftDirection: "communication", rightDirection: "system" },
+      { id: "new_improve", left: "Придумывать с нуля", right: "Улучшать то, что уже есть", leftDirection: "creative", rightDirection: "system" },
+      { id: "fast_deep", left: "Быстро пробовать гипотезы", right: "Спокойно доводить до качества", leftDirection: "technical", rightDirection: "analytical" },
+      { id: "text_numbers", left: "Работать со смыслами и текстом", right: "Работать с цифрами и логикой", leftDirection: "communication", rightDirection: "analytical" },
+      { id: "expert_coord", left: "Быть сильным специалистом", right: "Координировать людей и процессы", leftDirection: "technical", rightDirection: "system" },
     ],
   },
   {
@@ -541,142 +532,42 @@ const screens = [
     ],
   },
   {
-    type: "single",
-    eyebrow: "Роль в запуске",
-    title: "Команда запускает продукт за 2 недели. Какую роль интересно взять?",
-    text: "Представьте быстрый запуск: где вам хотелось бы быть полезнее всего?",
-    key: "launchRole",
-    options: [
-      { icon: "🔎", label: "Исследователь", note: "понять, кому это нужно", direction: "communication" },
-      { icon: "♟️", label: "Стратег", note: "решить, что запускать", direction: "analytical" },
-      { icon: "🎨", label: "Дизайнер", note: "сделать понятный интерфейс", direction: "creative" },
-      { icon: "📣", label: "Маркетолог", note: "привлечь людей", direction: "communication" },
-      { icon: "📈", label: "Аналитик", note: "настроить метрики", direction: "analytical" },
-      { icon: "📌", label: "Проджект", note: "довести до запуска", direction: "system" },
-      { icon: "🤖", label: "Технарь/no-code", note: "собрать прототип", direction: "technical" },
-    ],
-  },
-  {
     type: "favorite_work",
-    eyebrow: "Любимая работа",
-    title: "Соберите комфортные условия работы",
-    text: "Не профессию, а среду: ритм, формат, задачи и главную ценность.",
+    eyebrow: "Идеальные условия",
+    title: "Идеальные условия работы",
+    text: "Соберите мозаику из условий, в которых вам было бы легче расти. Выберите ритм, формат и главную ценность.",
     key: "favoriteWork",
     groups: {
       rhythm: {
-        label: "Ритм",
+        label: "Какой ритм вам ближе?",
         options: [
-          { icon: "🌿", label: "Спокойный", direction: "analytical" },
-          { icon: "⚡", label: "Динамичный", direction: "technical" },
-          { icon: "🚀", label: "Проектный", direction: "system" },
-          { icon: "🧩", label: "Гибкий", direction: "creative" },
+          { icon: "🌿", label: "Спокойно, без гонки", direction: "analytical" },
+          { icon: "⚡", label: "Живо и динамично", direction: "technical" },
+          { icon: "🚀", label: "Проектами, с финишем", direction: "system" },
+          { icon: "🧩", label: "Гибко, без жесткой схемы", direction: "creative" },
         ],
       },
       format: {
-        label: "Формат",
+        label: "Где комфортнее работать?",
         options: [
-          { icon: "🏡", label: "Удаленно", direction: "technical" },
-          { icon: "🔁", label: "Гибрид", direction: "communication" },
-          { icon: "🏢", label: "Офис", direction: "system" },
-          { icon: "✨", label: "Не важно", direction: "creative" },
-        ],
-      },
-      taskTypes: {
-        label: "Тип задач",
-        limit: 3,
-        options: [
-          { icon: "📊", label: "Анализировать", direction: "analytical" },
-          { icon: "🎨", label: "Создавать", direction: "creative" },
-          { icon: "💬", label: "Общаться", direction: "communication" },
-          { icon: "📌", label: "Управлять", direction: "system" },
-          { icon: "🤝", label: "Помогать", direction: "communication" },
-          { icon: "🧹", label: "Наводить порядок", direction: "system" },
-          { icon: "💡", label: "Придумывать", direction: "creative" },
+          { icon: "🏡", label: "Удаленно, в своем темпе", direction: "technical" },
+          { icon: "🔁", label: "Гибрид: дом и команда", direction: "communication" },
+          { icon: "🏢", label: "В офисе, рядом с людьми", direction: "system" },
+          { icon: "✨", label: "Формат не принципиален", direction: "creative" },
         ],
       },
       value: {
-        label: "Главная ценность",
+        label: "Что должно быть главным?",
         options: [
-          { icon: "💸", label: "Доход", direction: "analytical", scores: { growth: 1 } },
-          { icon: "🕊️", label: "Свобода", direction: "technical", scores: { autonomy: 1 } },
-          { icon: "🏡", label: "Стабильность", direction: "system", scores: { readiness: 1 } },
-          { icon: "🧭", label: "Смысл", direction: "communication", scores: { meaning: 1 } },
-          { icon: "🌱", label: "Рост", direction: "analytical", scores: { growth: 1 } },
-          { icon: "🎨", label: "Творчество", direction: "creative", scores: { meaning: 1 } },
+          { icon: "💸", label: "Нормальный доход", direction: "analytical", scores: { growth: 1 } },
+          { icon: "🕊️", label: "Больше свободы", direction: "technical", scores: { autonomy: 1 } },
+          { icon: "🏡", label: "Стабильность и опора", direction: "system", scores: { readiness: 1 } },
+          { icon: "🧭", label: "Смысл в том, что делаю", direction: "communication", scores: { meaning: 1 } },
+          { icon: "🌱", label: "Рост и развитие", direction: "analytical", scores: { growth: 1 } },
+          { icon: "🎨", label: "Творчество и живость", direction: "creative", scores: { meaning: 1 } },
         ],
       },
     },
-  },
-  {
-    type: "stage",
-    eyebrow: "Маршрут перехода",
-    visual: "route",
-    title: "Собираем аккуратный маршрут",
-    text: "Соединяем состояние, склонности и ограничения в безопасный первый шаг.",
-    tags: ["страхи", "идеальный день", "направления"],
-    button: "Собрать маршрут",
-  },
-  {
-    type: "multi",
-    eyebrow: "Ограничения",
-    title: "Что может мешать вам начать менять работу или направление?",
-    text: "Выберите до трех. Это нужно не для давления, а для безопасного плана.",
-    key: "fears",
-    limit: 3,
-    options: [
-      { icon: "😬", label: "Боюсь выбрать не то", scores: { readiness: 1 } },
-      { icon: "💸", label: "Страшно потерять доход", scores: { growth: 1 } },
-      { icon: "⏰", label: "Не понимаю, где взять время", scores: { energy: 1 } },
-      { icon: "🧭", label: "Не знаю, с чего начать", scores: { readiness: 2 } },
-    ],
-  },
-  {
-    type: "single",
-    eyebrow: "Ресурс на переход",
-    title: "Если менять направление через обучение, какой платеж комфортен?",
-    text: "В месяц в течение года. Можно выбрать осторожный вариант.",
-    key: "educationBudget",
-    options: [
-      { icon: "🧊", label: "Пока 0 ₽", scores: { readiness: 1 } },
-      { icon: "🌱", label: "До 5 000 ₽", scores: { readiness: 1 } },
-      { icon: "💼", label: "5 000–15 000 ₽", scores: { readiness: 2 } },
-      { icon: "🚀", label: "15 000 ₽ и выше", scores: { readiness: 3, growth: 1 } },
-    ],
-  },
-  {
-    type: "build_scene",
-    eyebrow: "Идеальный день",
-    title: "Соберите день, к которому хочется прийти",
-    text: "Перетащите или тапайте карточки: что должно быть в вашей жизни чаще?",
-    key: "lifeScene",
-    zones: {
-      now: "Не главное",
-      want: "Мой день",
-    },
-    button: "Собрать идеальный день",
-    items: [
-      { id: "calm", icon: "🧘", label: "Спокойствие", axis: "energy" },
-      { id: "money", icon: "💸", label: "Деньги", axis: "growth" },
-      { id: "interest", icon: "✨", label: "Интерес", axis: "meaning" },
-      { id: "learning", icon: "📚", label: "Рост", axis: "readiness" },
-      { id: "freedom", icon: "🕊️", label: "Свобода", axis: "autonomy" },
-      { id: "stability", icon: "🏡", label: "Стабильность", axis: "readiness" },
-    ],
-  },
-  {
-    type: "multi",
-    eyebrow: "Направления",
-    title: "Какие задачи кажутся вам живыми, а не выматывающими?",
-    text: "Выберите до трех — по ним подберем профессии.",
-    key: "directions",
-    limit: 3,
-    options: [
-      { icon: "📊", label: "Разбираться в данных", direction: "analytical" },
-      { icon: "🎨", label: "Придумывать визуал", direction: "creative" },
-      { icon: "💬", label: "Общаться и убеждать", direction: "communication" },
-      { icon: "🧪", label: "Проверять и улучшать", direction: "system" },
-      { icon: "💻", label: "Собирать цифровые штуки", direction: "technical" },
-    ],
   },
   {
     type: "insight",
@@ -692,7 +583,7 @@ const screens = [
     eyebrow: "Анализируем результаты",
     title: "Собираем ваш профиль",
     text: "Соединяем ответы, мини-задачи и карту направлений в один результат.",
-    duration: 19000,
+    duration: 15000,
     steps: ["Считаем 5 осей состояния", "Подбираем архетип", "Собираем 2–3 профессии"],
   },
   {
@@ -757,7 +648,6 @@ function render() {
     insight: renderInsight,
     drag: renderDrag,
     drag_ranking: renderDragRanking,
-    pair_compare: renderPairCompare,
     free_draw: renderFreeDraw,
     build_scene: renderBuildScene,
     proof: renderProof,
@@ -770,6 +660,9 @@ function render() {
 
   screenEl.innerHTML = "";
   screenEl.appendChild(renderers[screen.type](screen));
+}
+
+function scrollToScreenTop() {
   window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0 }));
 }
 
@@ -808,21 +701,13 @@ function renderIntro(screen) {
         <span>✓ план</span>
       </div>
     </div>
-    <div class="preview-card small-a" aria-hidden="true">План действий</div>
-    <div class="preview-card small-b" aria-hidden="true">Оценка перспектив</div>
   `;
   wrap.appendChild(art);
   if (screen.proof) {
     const proof = el("div", "intro-proof");
     proof.innerHTML = `
-      <div class="proof-avatars" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-      </div>
-      <div class="proof-copy">
-        <strong>${screen.proof.passed}</strong>
-        <span><b></b>${screen.proof.active}</span>
-        ${screen.proof.expert ? `<small>${screen.proof.expert}</small>` : ""}
-      </div>
+      <span class="live-dot" aria-hidden="true"></span>
+      <strong>${screen.proof.active}</strong>
     `;
     wrap.appendChild(proof);
   }
@@ -841,15 +726,6 @@ function renderIntro(screen) {
 
 function renderStage(screen) {
   const wrap = baseContent(screen);
-  const panel = el("div", "stage-panel");
-  panel.appendChild(el("div", `stage-visual ${screen.visual || "route"}`, stageVisualMarkup(screen.visual, screen.visualOnly)));
-  if (screen.source) {
-    panel.appendChild(el("div", "stage-source", `<span>Основано на исследованиях</span><strong>${screen.source}</strong>`));
-  }
-  const tags = el("div", "stage-tags");
-  screen.tags.forEach((tag) => tags.appendChild(el("span", "", tag)));
-  panel.appendChild(tags);
-  wrap.appendChild(panel);
   wrap.appendChild(button(screen.button, "primary", next));
   return wrap;
 }
@@ -1026,22 +902,22 @@ function renderSingleReveal(screen) {
   const selectedOption = screen.options.find((option) => option.label === selectedLabel);
   const options = el("div", "options reveal-options");
   screen.options.forEach((option) => {
-    options.appendChild(choiceButton(option, selectedLabel === option.label, () => {
+    const isSelected = selectedLabel === option.label;
+    options.appendChild(choiceButton(option, isSelected, () => {
       state.answers[screen.key] = option.label;
       render();
     }));
+    if (isSelected && option.reveal) {
+      options.appendChild(
+        el(
+          "div",
+          "reveal-note",
+          `<span>Что это может значить</span><p>${option.reveal}</p>`,
+        ),
+      );
+    }
   });
   wrap.appendChild(options);
-
-  if (selectedOption?.reveal) {
-    wrap.appendChild(
-      el(
-        "div",
-        "reveal-note",
-        `<span>Что это может значить</span><p>${selectedOption.reveal}</p>`,
-      ),
-    );
-  }
 
   const nextButton = button("Продолжить", "primary", () => {
     applyOption(selectedOption);
@@ -1232,17 +1108,16 @@ function renderQuickCards(screen) {
 
 function renderFavoriteWork(screen) {
   const wrap = baseContent(screen);
-  const saved = state.answers[screen.key] || { rhythm: "", format: "", taskTypes: [], value: "" };
+  const saved = state.answers[screen.key] || { rhythm: "", format: "", value: "" };
   const form = el("div", "favorite-work");
 
   form.appendChild(favoriteGroup(screen, saved, "rhythm"));
   form.appendChild(favoriteGroup(screen, saved, "format"));
-  form.appendChild(favoriteGroup(screen, saved, "taskTypes"));
   form.appendChild(favoriteGroup(screen, saved, "value"));
   wrap.appendChild(form);
 
   const nextButton = button("Продолжить", "primary", next);
-  nextButton.disabled = !saved.rhythm || !saved.format || !saved.value || !saved.taskTypes?.length;
+  nextButton.disabled = !saved.rhythm || !saved.format || !saved.value;
   wrap.appendChild(nextButton);
   return wrap;
 }
@@ -1253,21 +1128,11 @@ function favoriteGroup(screen, saved, key) {
   node.appendChild(el("strong", "", group.label));
   const options = el("div", "favorite-options");
   group.options.forEach((option) => {
-    const isMulti = key === "taskTypes";
-    const selected = isMulti ? saved[key]?.includes(option.label) : saved[key] === option.label;
+    const selected = saved[key] === option.label;
     const buttonNode = el("button", `favorite-chip${selected ? " selected" : ""}`, `${option.icon} ${option.label}`);
     buttonNode.type = "button";
     buttonNode.addEventListener("click", () => {
-      const nextValue = { ...saved, taskTypes: [...(saved.taskTypes || [])] };
-      if (isMulti) {
-        if (nextValue.taskTypes.includes(option.label)) {
-          nextValue.taskTypes = nextValue.taskTypes.filter((item) => item !== option.label);
-        } else if (nextValue.taskTypes.length < (group.limit || 3)) {
-          nextValue.taskTypes.push(option.label);
-        }
-      } else {
-        nextValue[key] = option.label;
-      }
+      const nextValue = { ...saved, [key]: option.label };
       state.answers[screen.key] = nextValue;
       render();
     });
@@ -1306,30 +1171,6 @@ function renderRange(screen) {
 
 function renderInsight(screen) {
   const wrap = baseContent(screen);
-  const card = el("div", "insight-card");
-  if (screen.stat) {
-    card.classList.add("research-insight");
-    card.appendChild(
-      el(
-        "div",
-        "research-stat",
-        `<strong>${screen.stat.value}</strong><span>${screen.stat.label}</span><small>${screen.stat.source}</small>`,
-      ),
-    );
-    card.appendChild(
-      el(
-        "div",
-        "research-bars",
-        "<span style=\"--bar: 62%\"></span><span style=\"--bar: 44%\"></span><span style=\"--bar: 28%\"></span>",
-      ),
-    );
-  } else {
-    card.appendChild(el("div", `stage-visual insight ${screen.visual || "signal"}`, stageVisualMarkup(screen.visual || "signal")));
-  }
-  const tags = el("div", "tags");
-  screen.tags.forEach((tag) => tags.appendChild(el("span", "tag", tag)));
-  card.appendChild(tags);
-  wrap.appendChild(card);
   wrap.appendChild(button(screen.button, "primary", next));
   return wrap;
 }
@@ -1447,59 +1288,6 @@ function renderDragRanking(screen) {
     state.answers[screen.key] = order;
     next();
   }));
-  return wrap;
-}
-
-function renderPairCompare(screen) {
-  const wrap = baseContent(screen);
-  const pairs = getComparisonPairs(screen.items);
-  const saved = state.answers[screen.key] || {
-    comparisons: [],
-    wins: Object.fromEntries(screen.items.map((item) => [item.id, 0])),
-  };
-  const round = Math.min(saved.comparisons.length, screen.rounds || pairs.length);
-  const pair = pairs[round % pairs.length];
-  const left = screen.items.find((item) => item.id === pair[0]);
-  const right = screen.items.find((item) => item.id === pair[1]);
-
-  wrap.appendChild(
-    el(
-      "div",
-      "compare-progress",
-      `<span>Сравнение ${round + 1} из ${Math.min(screen.rounds || pairs.length, pairs.length)}</span><strong>${Math.round((round / Math.min(screen.rounds || pairs.length, pairs.length)) * 100)}%</strong>`,
-    ),
-  );
-
-  const card = el("div", "compare-card");
-  card.appendChild(el("div", "compare-question", `Что мешает сильнее?`));
-  const choices = el("div", "compare-choices");
-  [left, right].forEach((item) => {
-    const node = el("button", "compare-choice", optionVisual(item));
-    node.type = "button";
-    node.addEventListener("click", () => choosePairWinner(item.id));
-    choices.appendChild(node);
-  });
-  card.appendChild(choices);
-  wrap.appendChild(card);
-
-  const standings = el("div", "compare-standings");
-  getPairRanking(screen.items, saved.wins).forEach((item, index) => {
-    standings.appendChild(el("span", index === 0 ? "leading" : "", `${index + 1}. ${item.label}`));
-  });
-  wrap.appendChild(standings);
-
-  function choosePairWinner(winnerId) {
-    const wins = { ...saved.wins, [winnerId]: (saved.wins[winnerId] || 0) + 1 };
-    const comparisons = [...saved.comparisons, { left: left.id, right: right.id, winner: winnerId }];
-    const order = getPairRanking(screen.items, wins).map((item) => item.id);
-    state.answers[screen.key] = { comparisons, wins, order };
-    if (comparisons.length >= Math.min(screen.rounds || pairs.length, pairs.length)) {
-      next();
-      return;
-    }
-    render();
-  }
-
   return wrap;
 }
 
@@ -1879,7 +1667,7 @@ function renderResult() {
   const matchCard = el("section", "result-card-light profession-main");
   matchCard.innerHTML = `
     <div>
-      <p class="result-muted">Вам подходят профессии:</p>
+      <p class="result-muted">Ваше направление</p>
       <h2>${topProfession.name}</h2>
     </div>
     <div class="match-badge">
@@ -1889,6 +1677,7 @@ function renderResult() {
     <div class="chips-row">
       ${topProfession.traits.map((trait) => `<span>${trait}</span>`).join("")}
     </div>
+    <div class="result-emoji-row"><span>✨ интерес</span><span>🧭 понятный путь</span><span>💼 новая работа</span></div>
   `;
   topGrid.appendChild(matchCard);
 
@@ -1911,66 +1700,102 @@ function renderResult() {
   wrap.appendChild(topGrid);
 
   const middleGrid = el("div", "result-two-grid");
-  const duties = el("section", "result-card-light profession-copy");
-  duties.innerHTML = `
-    <h2>Чем занимается специалист</h2>
-    <p>${topProfession.description}</p>
+  const money = el("section", "result-card-dark money-card");
+  money.innerHTML = `
+    <h3>Доход</h3>
+    <div class="salary-grid">
+      <div class="salary-box"><span>Старт</span><strong>от ${topProfession.salary}</strong></div>
+      <div class="salary-box accent"><span>Через 2–3 года</span><strong>${topProfession.salaryPotential}</strong></div>
+    </div>
+    <p>Рост зависит от практики, портфолио, собеседований и выбранного формата работы.</p>
+  `;
+  middleGrid.appendChild(money);
+
+  const tasks = el("section", "result-card-light task-card");
+  tasks.innerHTML = `
+    <h2>Чем вы будете заниматься</h2>
+    <div class="task-grid">
+      ${topProfession.realTasks.map((item) => `<div class="task-pill"><span>✅</span><strong>${item}</strong></div>`).join("")}
+    </div>
     <p>${topProfession.duties}</p>
   `;
-  middleGrid.appendChild(duties);
-
-  const skills = el("section", "result-card-dark skills-card");
-  skills.innerHTML = `
-    <div class="salary-box">
-      <span>Средняя зарплата начинающего специалиста в первый год работы:</span>
-      <strong>от ${topProfession.salary}</strong>
-    </div>
-    <h3>Что надо знать и уметь, чтобы выучиться на ${topProfession.learnName}:</h3>
-    <ul>
-      ${topProfession.learn.map((item) => `<li>${item}</li>`).join("")}
-    </ul>
-    <div class="gradient-note">Здесь не нужны глубокие знания заранее: важнее интерес, регулярная практика и понятный план перехода</div>
-  `;
-  middleGrid.appendChild(skills);
+  middleGrid.appendChild(tasks);
   wrap.appendChild(middleGrid);
 
-  wrap.appendChild(el("h2", "result-section-title", "Почему мы рекомендуем вам эти профессии"));
+  wrap.appendChild(el("h2", "result-section-title", "Как может выглядеть путь"));
+  const progress = el("section", "result-card-light progress-card");
+  progress.innerHTML = `
+    <div class="progress-rail">
+      <div><span>Сегодня</span><strong>старт без рывка</strong></div>
+      <div><span>1–2 мес.</span><strong>первые навыки</strong></div>
+      <div><span>3–5 мес.</span><strong>портфолио</strong></div>
+      <div><span>6–9 мес.</span><strong>отклики</strong></div>
+      <div class="dream"><span>9–12 мес.</span><strong>новая работа + ощущение “я на своем месте”</strong></div>
+    </div>
+    <div class="dream-card"><span>🏁</span><b>Финальная точка</b><p>Больше сил, любимая работа, понятная траектория роста и ощущение, что жизнь снова ваша.</p></div>
+  `;
+  wrap.appendChild(progress);
+
+  wrap.appendChild(el("h2", "result-section-title", "Вакансии на hh.ru сейчас"));
+  const vacancies = el("div", "vacancy-shots");
+  topProfession.vacancies.forEach((vacancy) => {
+    vacancies.appendChild(
+      el(
+        "article",
+        "vacancy-shot",
+        `<div><span class="hh-badge">hh</span><small>${vacancy.meta}</small></div><h3>${vacancy.title}</h3><strong>${vacancy.salary}</strong><p>${vacancy.company}</p>`,
+      ),
+    );
+  });
+  wrap.appendChild(vacancies);
 
   const reasonGrid = el("div", "result-two-grid");
-  const archetype = el("section", "result-card-light archetype-card");
+  const archetype = el("section", "result-card-light archetype-card compact-result");
   archetype.innerHTML = `
-    <p class="result-muted">Ваш архетип:</p>
+    <p class="result-muted">Почему это похоже на вас</p>
     <h2>${result.title}</h2>
-    <p>${result.text}</p>
-    <p><b>${result.potential}</b></p>
-    <p><span class="blue-text">Именно таким людям подходят эти профессии:</span> здесь можно опереться на уже имеющиеся качества и постепенно перевести их в новую деятельность.</p>
+    <div class="qualities-list light-list">
+      ${topProfession.qualities.map((item) => `<p>💡 ${item}</p>`).join("")}
+    </div>
   `;
   reasonGrid.appendChild(archetype);
 
-  const qualities = el("section", "result-card-dark qualities-card");
-  qualities.innerHTML = `
-    <div class="photo-strip" aria-hidden="true">
-      <span></span>
+  const learning = el("section", "result-card-dark skills-card compact-result");
+  learning.innerHTML = `
+    <h3>Что поможет стартовать</h3>
+    <div class="mini-learning-grid">
+      ${topProfession.learn.map((item) => `<span>⚡ ${item}</span>`).join("")}
     </div>
-    <h3>У вас уже есть базовые качества для работы:</h3>
-    <div class="qualities-list">
-      ${topProfession.qualities.map((item) => `<p>${item}</p>`).join("")}
-    </div>
+    <div class="gradient-note">Не нужно “сначала стать другим человеком” — нужен понятный маршрут и практика.</div>
   `;
-  reasonGrid.appendChild(qualities);
+  reasonGrid.appendChild(learning);
   wrap.appendChild(reasonGrid);
 
-  if (result.interactions.length) {
-    wrap.appendChild(el("h2", "result-section-title", "Что показали интерактивы"));
-    const insightList = el("div", "interaction-list result-insights");
-    result.interactions.forEach((item) => {
-      const node = el("div", "interaction-card");
-      node.appendChild(el("strong", "", item.title));
-      node.appendChild(el("p", "", item.text));
-      insightList.appendChild(node);
-    });
-    wrap.appendChild(insightList);
-  }
+  wrap.appendChild(el("h2", "result-section-title", "Почему Skillbox"));
+  const skillbox = el("section", "result-card-light skillbox-result");
+  skillbox.innerHTML = `
+    <div class="skillbox-proof-grid">
+      <div><span>🎓</span><strong>141 000+</strong><p>выпускников уже нашли работу мечты</p></div>
+      <div><span>🤝</span><strong>700+</strong><p>компаний доверяют выпускникам</p></div>
+      <div><span>💼</span><strong>Центр карьеры</strong><p>резюме, портфолио, вакансии, подготовка к собеседованиям</p></div>
+      <div><span>🛟</span><strong>Вернем деньги</strong><p>если не найдете работу по условиям программы</p></div>
+      <div><span>🕒</span><strong>Гибкий график</strong><p>можно совмещать с работой и личной жизнью</p></div>
+      <div><span>👩‍🏫</span><strong>Кураторы рядом</strong><p>проверяют работы и дают понятную обратную связь</p></div>
+    </div>
+  `;
+  wrap.appendChild(skillbox);
+
+  wrap.appendChild(el("h2", "result-section-title", "Истории студентов"));
+  const stories = el("div", "student-stories");
+  [
+    "Я освоил профессию в IT после 20 лет на железной дороге",
+    "Как воспитатель стала менеджером маркетплейсов",
+    "Аналитика любому возрасту покорна",
+    "Приняла оффер через месяц после обучения",
+  ].forEach((story, index) => {
+    stories.appendChild(el("article", "story-card", `<span>${["🚆", "🛍️", "📊", "🎉"][index]}</span><strong>${story}</strong><p>Реальная история успеха студента Skillbox</p>`));
+  });
+  wrap.appendChild(stories);
 
   const cta = button(state.consultationRequested ? "Заявка отправлена" : "Оставить заявку на консультацию", "primary", () => {
     state.consultationRequested = true;
@@ -2419,25 +2244,6 @@ function moveBefore(order, movedId, targetId) {
   return nextOrder;
 }
 
-function getComparisonPairs(items) {
-  const ids = items.map((item) => item.id);
-  const pairs = [];
-  for (let first = 0; first < ids.length; first += 1) {
-    for (let second = first + 1; second < ids.length; second += 1) {
-      pairs.push([ids[first], ids[second]]);
-    }
-  }
-  return pairs;
-}
-
-function getPairRanking(items, wins = {}) {
-  return [...items].sort((a, b) => {
-    const scoreDiff = (wins[b.id] || 0) - (wins[a.id] || 0);
-    if (scoreDiff !== 0) return scoreDiff;
-    return items.findIndex((item) => item.id === a.id) - items.findIndex((item) => item.id === b.id);
-  });
-}
-
 function drawCanvas(ctx, canvas, points = []) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#fff";
@@ -2620,15 +2426,6 @@ function recomputeScores() {
       return;
     }
 
-    if (screen.type === "pair_compare") {
-      answer.order?.forEach((id, index) => {
-        const item = screen.items.find((option) => option.id === id);
-        if (!item) return;
-        scores[item.axis] += Math.max(1, screen.items.length - index);
-      });
-      return;
-    }
-
     if (screen.type === "work_sliders") {
       screen.sliders.forEach((slider) => {
         const value = answer.values?.[slider.id];
@@ -2722,16 +2519,6 @@ function buildInteractionInsights() {
     });
   }
 
-  const sceneScreen = screens.find((screen) => screen.key === "lifeScene");
-  const scene = state.answers.lifeScene;
-  if (sceneScreen && scene?.now?.length && scene?.want?.length) {
-    const labels = (ids) => ids.map((id) => sceneScreen.items.find((item) => item.id === id)?.label).filter(Boolean);
-    insights.push({
-      title: "Идеальный день",
-      text: `В вашем идеальном дне важны: ${labels(scene.want).join(", ")}. Это стоит учитывать при выборе обучения и новой деятельности.`,
-    });
-  }
-
   return insights;
 }
 
@@ -2743,6 +2530,7 @@ function next() {
     }
     state.step = nextStep;
     render();
+    scrollToScreenTop();
   }
 }
 
@@ -2754,6 +2542,7 @@ function back() {
     }
     state.step = previousStep;
     render();
+    scrollToScreenTop();
   }
 }
 
@@ -2770,7 +2559,9 @@ function reset() {
   state.discount = null;
   state.consultationRequested = false;
   render();
+  scrollToScreenTop();
 }
 
 backButton.addEventListener("click", back);
 render();
+scrollToScreenTop();
