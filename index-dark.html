@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Что на самом деле не так? | Dark</title>
+    <link rel="stylesheet" href="./styles.css?v=dark-lead-consent-polish" />
+    <link rel="stylesheet" href="./styles-dark.css?v=dark-lead-consent-polish" />
+  </head>
+  <body class="dark-theme">
+    <main class="shell">
+      <section class="phone" aria-live="polite">
+        <div class="brand-line" aria-label="Skillbox">
+          <img class="brand-logo" src="./assets/skillbox-logo.png" alt="Skillbox" />
+        </div>
+        <header class="topbar">
+          <button class="icon-button" id="backButton" type="button" aria-label="Назад">
+            <span aria-hidden="true">‹</span>
+          </button>
+          <div class="progress-wrap" aria-label="Прогресс квиза">
+            <div class="progress-meta">
+              <span id="stepLabel">1 из 24</span>
+              <span id="timeLabel">7 минут</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
+        </header>
+
+        <div class="screen" id="quizScreen"></div>
+      </section>
+    </main>
+
+    <script src="./app.js?v=dark-lead-consent"></script>
+  </body>
+</html>

@@ -178,10 +178,10 @@ const screens = [
     title: "Устали? Потеряли интерес? Чувствуете, что живете на автопилоте?",
     text: "Это может быть не просто усталостью, а признаком эмоционального выгорания. С этим важно разобраться.",
     points: [
-      "Настроим диагностику под вас",
-      "Найдем, куда уходят силы и интерес",
-      "Поймем главную причину",
-      "Соберем профиль и план действий",
+      "Определим, куда уходит энергия",
+      "Найдем причину состояния",
+      "Соберем персональный профиль",
+      "Дадим план выхода из состояния",
     ],
     proof: {
       active: "127 человек проходят прямо сейчас",
@@ -200,12 +200,16 @@ const screens = [
   },
   {
     type: "proof",
-    title: "А мы — Skillbox. Помогаем людям находить новую профессию и двигаться к ней с самого нуля понятными шагами.",
+    title: "А мы — Skillbox.",
+    text: "Уже 10 лет помогаем людям находить новую профессию и двигаться к ней с самого нуля понятными шагами.",
     button: "Приятно познакомиться, Skillbox",
     cards: [
       { icon: "🎓", title: "141 000+", text: "выпускников уже нашли работу мечты" },
       { icon: "🤝", title: "700+", text: "компаний доверяют выпускникам Skillbox" },
       { icon: "⭐", title: "№1", text: "по качеству обучения" },
+      { icon: "💼", title: "85%", text: "студентов находят работу в первые 3 месяца после обучения" },
+      { icon: "📚", title: "700+", text: "программ для карьеры и жизни" },
+      { icon: "🛟", title: "Гарантия", text: "помогаем найти работу или полностью возвращаем деньги за обучение" },
     ],
   },
   {
@@ -300,7 +304,6 @@ const screens = [
   },
   {
     type: "loader",
-    eyebrow: "Настройка под вас",
     title: "{name}, настраиваем диагностику под ваш контекст",
     text: "Учитываем ваш ритм, фон и то, что хочется вернуть в жизнь.",
     duration: 15000,
@@ -311,11 +314,13 @@ const screens = [
     eyebrow: "Глубина состояния",
     visual: "recovery",
     visualOnly: true,
-    title: "Проверим, помогает ли вам отдых",
-    text: "Исследования восстановления после рабочего стресса показывают: важно не только сколько вы отдыхаете, но и получается ли мысленно отключиться от дел. Если пауза не перезагружает, это помогает понять глубину состояния.",
+    title: "{name}, теперь посмотрим глубже",
+    text: "Мы настроили диагностику под вас. Сейчас посмотрим, возвращает ли вам отдых силы, спокойствие и интерес — после сна, выходных, прогулок или времени для себя.",
+    badge: "Если после отдыха сил не становится больше, причина может быть глубже обычной усталости.",
+    image: "assets/recovery-depth-illustration.png",
     tags: ["перезагрузка", "отключение от дел", "глубина состояния"],
     source: "Sonnentag & Fritz, модель восстановления от рабочего стресса",
-    button: "Проверить",
+    button: "Проверить глубину состояния",
   },
   {
     type: "range",
@@ -380,32 +385,65 @@ const screens = [
     ],
   },
   {
+    type: "loader",
+    title: "Секундочку",
+    text: "Записываем ваши ответы для составления персонального профиля.",
+    duration: 3000,
+    icon: "⏳",
+    variant: "technical",
+    steps: ["Фиксируем ответы", "Собираем первые сигналы", "Готовим следующий блок"],
+  },
+  {
     type: "stage",
-    eyebrow: "Ищем источник",
+    eyebrow: "Ищем источник состояния",
     visual: "work",
-    title: "Проверим, как на вас влияет ежедневная среда",
-    text: "ВОЗ относит перегруз, низкий контроль, неясную роль и слабую поддержку на работе к рискам для психического здоровья. Часто это связано с тем, чем человек занят каждый день. Давайте проверим, есть ли это у вас.",
+    title: "Проверим, как на вас влияет работа",
+    text: "Часто усталость, потеря интереса и ощущение «автопилота» связаны не с человеком, а со средой, в которой он проводит большую часть дня. Работа, профессия, задачи и уровень нагрузки могут незаметно забирать ресурс. Давайте проверим, есть ли это у вас.",
+    badge: "Один из главных источников напряжения — то, чем мы заняты каждый день",
+    image: "assets/work-impact-illustration.png",
     tags: ["ежедневная среда", "работа и задачи", "самочувствие"],
-    button: "Проверить",
+    button: "Оценить влияние работы",
   },
   {
     type: "single_reveal",
     eyebrow: "Работа и деятельность",
     title: "Что в вашей текущей деятельности забирает больше всего сил?",
-    text: "Выберите один главный фактор. После выбора покажем, что может стоять за этим напряжением.",
+    text: "Выберите до 3 факторов. Обычно выматывает не что-то одно, а несколько повторяющихся вещей.",
     key: "drain",
+    max: 3,
     options: [
       {
         id: "people",
         icon: "🗣️",
-        label: "Люди и коммуникации",
+        label: "Много общения и созвонов",
         scores: { autonomy: 2, energy: 1 },
-        reveal: "Похоже, вас больше всего выматывает не сама работа, а постоянное общение и необходимость быть включенным.",
+        reveal: "Похоже, ресурс уходит не только на задачи, но и на необходимость постоянно быть включенным в людей.",
       },
       {
-        id: "tasks",
+        id: "online",
+        icon: "📲",
+        label: "Постоянно быть на связи",
+        scores: { autonomy: 2, energy: 2 },
+        reveal: "Когда сообщения, срочность и ожидание ответа не заканчиваются, отдыхать становится сложнее даже вне работы.",
+      },
+      {
+        id: "urgent",
+        icon: "🔥",
+        label: "Срочные задачи без пауз",
+        scores: { energy: 3 },
+        reveal: "Постоянный режим “надо вчера” быстро съедает запас сил и не дает нервной системе выдохнуть.",
+      },
+      {
+        id: "unclear",
+        icon: "🌫️",
+        label: "Непонятно, чего от меня ждут",
+        scores: { autonomy: 1, energy: 2 },
+        reveal: "Неясные ожидания заставляют держать много напряжения в голове и постоянно перепроверять себя.",
+      },
+      {
+        id: "routine",
         icon: "🔁",
-        label: "Одни и те же задачи",
+        label: "Одинаковые задачи по кругу",
         scores: { meaning: 2, growth: 1 },
         reveal: "Похоже, усталость усиливает повторяемость: вы вкладываетесь, но день редко дает ощущение движения вперед.",
       },
@@ -419,9 +457,23 @@ const screens = [
       {
         id: "growth",
         icon: "🧱",
-        label: "Нет роста и влияния",
+        label: "Мало роста и влияния",
         scores: { meaning: 1, growth: 2, autonomy: 1 },
         reveal: "Похоже, вас выматывает ощущение потолка: хочется больше влияния, развития и видимого результата.",
+      },
+      {
+        id: "support",
+        icon: "🧯",
+        label: "Ответственность без поддержки",
+        scores: { energy: 2, autonomy: 1 },
+        reveal: "Когда ответственность большая, а поддержки мало, работа начинает ощущаться как постоянное удерживание всего на себе.",
+      },
+      {
+        id: "meaning",
+        icon: "🕳️",
+        label: "Не вижу смысла в том, что делаю",
+        scores: { meaning: 3, growth: 1 },
+        reveal: "Если в задачах мало смысла или пользы, силы уходят быстрее: становится трудно понимать, ради чего стараться.",
       },
     ],
   },
@@ -452,18 +504,28 @@ const screens = [
     ],
   },
   {
+    type: "loader",
+    title: "Секундочку",
+    text: "Сверяем ваши ответы и ищем главный источник напряжения.",
+    duration: 3000,
+    icon: "⏳",
+    variant: "technical",
+    steps: ["Проверяем ответы о работе", "Сопоставляем с признаками усталости", "Готовим вывод"],
+  },
+  {
     type: "insight",
     eyebrow: "Важный вывод",
     visual: "research",
-    title: "{name}, похоже, дело может быть в текущей деятельности",
-    text: "Это не значит, что с вами что-то не так. По опросу «Работа.ру» и «Подработка», 62% россиян изменили бы свой выбор профессии. Пересматривать направление нормально — особенно если текущая среда регулярно забирает силы.",
-    stat: {
-      value: "62%",
-      label: "россиян изменили бы выбор профессии",
-      source: "опрос «Работа.ру» и «Подработка»",
-    },
+    title: "Возможно, вам пора сменить вектор",
+    text: "По вашим ответам видно: текущая деятельность может быть одним из главных источников усталости и потери интереса. Теперь проверим ваши склонности и сильные стороны, чтобы подобрать потенциальные направления для перехода.",
+    image: "assets/vector-change-illustration.png",
+    facts: [
+      { value: "62%", label: "россиян пересмотрели бы выбор профессии" },
+      { value: "23%", label: "уже сменили профессию за последние 2 года" },
+      { value: "30+", label: "частый возраст для смены карьерного вектора" },
+    ],
     tags: ["это не редкость", "можно проверить новое направление", "переход без резкого рывка"],
-    button: "Найти направление",
+    button: "Оценить мои склонности",
   },
   {
     type: "single",
@@ -534,49 +596,58 @@ const screens = [
   {
     type: "favorite_work",
     eyebrow: "Идеальные условия",
-    title: "Идеальные условия работы",
-    text: "Соберите мозаику из условий, в которых вам было бы легче расти. Выберите ритм, формат и главную ценность.",
+    title: "Соберите свою идеальную работу",
+    text: "Представьте, что ваша будущая работа — это нить. А условия ниже — бусины. Нанижите 3–5 самых важных, без которых вам сложно чувствовать интерес, рост и энергию.",
     key: "favoriteWork",
-    groups: {
-      rhythm: {
-        label: "Какой ритм вам ближе?",
-        options: [
-          { icon: "🌿", label: "Спокойно, без гонки", direction: "analytical" },
-          { icon: "⚡", label: "Живо и динамично", direction: "technical" },
-          { icon: "🚀", label: "Проектами, с финишем", direction: "system" },
-          { icon: "🧩", label: "Гибко, без жесткой схемы", direction: "creative" },
-        ],
-      },
-      format: {
-        label: "Где комфортнее работать?",
-        options: [
-          { icon: "🏡", label: "Удаленно, в своем темпе", direction: "technical" },
-          { icon: "🔁", label: "Гибрид: дом и команда", direction: "communication" },
-          { icon: "🏢", label: "В офисе, рядом с людьми", direction: "system" },
-          { icon: "✨", label: "Формат не принципиален", direction: "creative" },
-        ],
-      },
-      value: {
-        label: "Что должно быть главным?",
-        options: [
-          { icon: "💸", label: "Нормальный доход", direction: "analytical", scores: { growth: 1 } },
-          { icon: "🕊️", label: "Больше свободы", direction: "technical", scores: { autonomy: 1 } },
-          { icon: "🏡", label: "Стабильность и опора", direction: "system", scores: { readiness: 1 } },
-          { icon: "🧭", label: "Смысл в том, что делаю", direction: "communication", scores: { meaning: 1 } },
-          { icon: "🌱", label: "Рост и развитие", direction: "analytical", scores: { growth: 1 } },
-          { icon: "🎨", label: "Творчество и живость", direction: "creative", scores: { meaning: 1 } },
-        ],
-      },
-    },
+    min: 3,
+    max: 5,
+    options: [
+      { icon: "🌿", label: "Без вечной гонки", direction: "analytical", scores: { energy: 1 } },
+      { icon: "🏡", label: "Работать из дома", direction: "technical", scores: { autonomy: 1 } },
+      { icon: "🗓️", label: "Гибкий график", direction: "system", scores: { autonomy: 1 } },
+      { icon: "⚡", label: "Чтобы было живо", direction: "technical", scores: { readiness: 1 } },
+      { icon: "🎨", label: "Делать по-своему", direction: "creative", scores: { meaning: 1 } },
+      { icon: "📈", label: "Видеть, что расту", direction: "analytical", scores: { growth: 1 } },
+      { icon: "🕊️", label: "Больше свободы", direction: "technical", scores: { autonomy: 1 } },
+      { icon: "💰", label: "Доход без тревоги", direction: "analytical", scores: { growth: 1 } },
+      { icon: "🎯", label: "Понимать, зачем", direction: "communication", scores: { meaning: 1 } },
+      { icon: "🤝", label: "Люди, с кем спокойно", direction: "system", scores: { autonomy: 1 } },
+      { icon: "🧩", label: "Ясные задачи", direction: "system", scores: { readiness: 1 } },
+    ],
   },
   {
     type: "insight",
     eyebrow: "Почти готово",
     visual: "plan",
-    title: "{name}, менять жизнь одним рывком не обязательно.",
-    text: "Дальше соберем профессии и план обучения без резких движений.",
+    title: "У вас есть сильные стороны для нового старта",
+    text: "По ответам видно: у вас есть потенциал для перехода. Менять всё резко не нужно — путь можно пройти мягко.",
+    badge: "Skillbox уже помог тысячам студентов освоить новую профессию и сделать первый шаг к работе мечты",
+    startVisual: true,
+    supportCards: [
+      { icon: "🎓", title: "Обучение", text: "Освоить новое направление постепенно" },
+      { icon: "🧩", title: "Практика", text: "Попробовать себя на первых проектах" },
+      { icon: "🤝", title: "Поддержка", text: "Двигаться рядом с наставниками" },
+    ],
     tags: ["влияние работы заметно", "без резких увольнений", "с понятным первым шагом"],
-    button: "Собрать результат",
+    button: "Собрать мой результат",
+  },
+  {
+    type: "single",
+    eyebrow: "Честная самопроверка",
+    title: "{name}, честно: вы готовы менять свою жизнь?",
+    text: "Перед тем как показать результат, важно зафиксировать не “правильный” ответ, а ваш настоящий. Признайтесь себе честно: вы хотите перемен или пока только присматриваетесь?",
+    highlight: "Перед тем как показать результат",
+    saveHint: {
+      title: "Учитываем ваш ответ",
+      text: "в персональном результате",
+    },
+    key: "changeReadiness",
+    options: [
+      { icon: "✅", label: "Да, я хочу перемен и готов(а) действовать", scores: { readiness: 3, meaning: 1 } },
+      { icon: "😟", label: "Да, хочу, но мне страшно", scores: { readiness: 2, energy: 1 } },
+      { icon: "🤔", label: "Пока не уверен(а), но хочу разобраться", scores: { readiness: 1, meaning: 1 } },
+      { icon: "⏳", label: "Нет, пока не готов(а)", scores: { readiness: 0 } },
+    ],
   },
   {
     type: "loader",
@@ -587,22 +658,23 @@ const screens = [
     steps: ["Считаем 5 осей состояния", "Подбираем архетип", "Собираем 2–3 профессии"],
   },
   {
+    type: "lead",
+    eyebrow: "Ваш результат готов",
+    title: "{name}, ваш профиль собран",
+    text: "Оставьте email и телефон, чтобы открыть персональный результат.",
+  },
+  {
     type: "discount_game",
     eyebrow: "Бонус перед результатом",
-    title: "{name}, проверьте интуицию и откройте персональную скидку",
-    text: "Мы спрятали большую скидку в одной из карточек. Выберите ту, к которой тянет сильнее всего.",
+    title: "{name}, откройте персональную скидку на обучение",
+    text: "Мы хотим, чтобы путь к новой жизни начался для вас на максимально выгодных условиях. Поэтому перед результатом разыгрываем большую скидку на обучение в Skillbox — выберите карту, к которой тянет сильнее всего.",
+    hint: "Выбирайте быстро: здесь важна первая реакция",
     key: "discountGame",
     cards: [
       { id: "left", label: "Карта A" },
       { id: "center", label: "Карта B" },
       { id: "right", label: "Карта C" },
     ],
-  },
-  {
-    type: "lead",
-    eyebrow: "Ваш результат готов",
-    title: "{name}, куда отправить персональный профиль?",
-    text: "Оставьте email и телефон. Результат откроется сразу, а эксперт сможет подсказать, какое направление и обучение подойдут вам мягче.",
   },
   {
     type: "result",
@@ -618,6 +690,45 @@ const stepLabel = document.querySelector("#stepLabel");
 const timeLabel = document.querySelector("#timeLabel");
 const progressFill = document.querySelector("#progressFill");
 
+const previewMode = new URLSearchParams(window.location.search).get("preview");
+if (previewMode === "discount") {
+  state.step = screens.findIndex((screen) => screen.type === "discount_game");
+  state.lead.name = "Анастасия";
+  state.discount = {
+    percent: 50,
+    code: createPromoCode(state.lead.name),
+    deadline: getDiscountDeadline(),
+  };
+  state.answers.discountGame = "center";
+  state.answers.discountGameRevealing = false;
+}
+
+if (previewMode === "lead") {
+  state.step = screens.findIndex((screen) => screen.type === "lead");
+  state.lead.name = "Анастасия";
+  state.scores = { energy: 3, meaning: 7, growth: 8, autonomy: 6, readiness: 8 };
+  state.answers = {
+    ...state.answers,
+    projectStart: "Понять людей",
+    firstTasks: ["Провести интервью и найти инсайты", "Придумать рекламный креатив"],
+  };
+}
+
+if (previewMode === "vector") {
+  state.step = screens.findIndex((screen) => screen.title === "Возможно, вам пора сменить вектор");
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "favorite") {
+  state.step = screens.findIndex((screen) => screen.key === "favoriteWork");
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "strengths") {
+  state.step = screens.findIndex((screen) => screen.title === "У вас есть сильные стороны для нового старта");
+  state.lead.name = "Анастасия";
+}
+
 function render() {
   const screen = screens[state.step];
   const progressPercent = Math.round(((state.step + 1) / totalScreens) * 100);
@@ -625,7 +736,7 @@ function render() {
   phoneEl.classList.toggle("result-mode", screen.type === "result");
   phoneEl.classList.toggle("intro-mode", screen.type === "intro");
   stepLabel.textContent = `${progressPercent}%`;
-  timeLabel.textContent = state.step < screens.length - 2 ? "7 минут" : "результат";
+  timeLabel.textContent = getRemainingTimeLabel();
   progressFill.style.width = `${progressPercent}%`;
   backButton.disabled = state.step === 0;
 
@@ -659,7 +770,42 @@ function render() {
   };
 
   screenEl.innerHTML = "";
-  screenEl.appendChild(renderers[screen.type](screen));
+  const renderedScreen = renderers[screen.type](screen);
+  if (shouldShowSaveHint(screen)) {
+    renderedScreen.appendChild(renderSaveHint());
+  }
+  screenEl.appendChild(renderedScreen);
+}
+
+function shouldShowSaveHint(screen) {
+  return !["intro", "stage", "insight", "loader", "discount_game", "lead", "result", "offer", "proof"].includes(screen.type);
+}
+
+function renderSaveHint() {
+  const screen = screens[state.step];
+  const hint = screen.saveHint || { title: "Сохраняем ответ", text: "для персонального результата" };
+  return el(
+    "div",
+    "save-hint",
+    `<span aria-hidden="true"></span><strong>${hint.title}</strong><small>${hint.text}</small>`,
+  );
+}
+
+function getRemainingTimeLabel() {
+  const resultIndex = screens.findIndex((screen) => screen.type === "result");
+  if (resultIndex === -1 || state.step >= resultIndex - 1) return "результат";
+  const remainingSteps = Math.max(0, resultIndex - state.step - 1);
+  const minutes = Math.max(1, Math.ceil((remainingSteps / Math.max(1, resultIndex)) * 7));
+  return `${minutes} ${pluralizeMinute(minutes)}`;
+}
+
+function pluralizeMinute(value) {
+  const lastTwo = value % 100;
+  const last = value % 10;
+  if (lastTwo >= 11 && lastTwo <= 14) return "минут";
+  if (last === 1) return "минута";
+  if (last >= 2 && last <= 4) return "минуты";
+  return "минут";
 }
 
 function scrollToScreenTop() {
@@ -669,10 +815,29 @@ function scrollToScreenTop() {
 function baseContent(screen) {
   const wrap = document.createElement("div");
   wrap.className = "content";
-  if (screen.eyebrow) wrap.appendChild(el("div", "eyebrow", personalize(screen.eyebrow)));
+  if (shouldShowEyebrow(screen)) wrap.appendChild(el("div", "eyebrow", getEyebrowText(screen)));
   if (screen.title) wrap.appendChild(el(screen.type === "intro" ? "h1" : "h2", "", personalize(screen.title)));
-  if (screen.text) wrap.appendChild(el("p", "", personalize(screen.text)));
+  if (screen.text) wrap.appendChild(el("p", "", formatScreenText(screen)));
   return wrap;
+}
+
+function shouldShowEyebrow(screen) {
+  return Boolean(screen.eyebrow && (isSetupEyebrow(screen) || ["stage", "insight", "lead", "discount_game"].includes(screen.type)));
+}
+
+function isSetupEyebrow(screen) {
+  return typeof screen.eyebrow === "string" && screen.eyebrow.startsWith("Настройка");
+}
+
+function getEyebrowText(screen) {
+  return isSetupEyebrow(screen) ? "Настраиваем тест под вас" : personalize(screen.eyebrow);
+}
+
+function formatScreenText(screen) {
+  const text = personalize(screen.text);
+  if (!screen.highlight) return text;
+  const highlight = personalize(screen.highlight);
+  return text.replace(highlight, `<mark>${highlight}</mark>`);
 }
 
 function renderIntro(screen) {
@@ -726,6 +891,12 @@ function renderIntro(screen) {
 
 function renderStage(screen) {
   const wrap = baseContent(screen);
+  if (screen.image) {
+    wrap.appendChild(el("div", "stage-image", `<img src="${screen.image}" alt="" />`));
+  }
+  if (screen.badge) {
+    wrap.appendChild(el("div", "stage-mini-badge", personalize(screen.badge)));
+  }
   wrap.appendChild(button(screen.button, "primary", next));
   return wrap;
 }
@@ -759,7 +930,7 @@ function stageVisualMarkup(type = "route", visualOnly = false) {
 function renderProfileName(screen) {
   if (state.answers.nameGreetingShown) {
     const wrap = el("div", "content name-greeting");
-    wrap.appendChild(el("div", "eyebrow", "Настройка 1 из 6"));
+    wrap.appendChild(el("div", "eyebrow", "Настраиваем тест под вас"));
     wrap.appendChild(el("div", "name-emoji", getNameEmoji(state.lead.name), { "aria-hidden": "true" }));
     wrap.appendChild(el("h2", "", `Приятно познакомиться, ${state.lead.name}!`));
     const meaning = getNameMeaning(state.lead.name);
@@ -855,8 +1026,12 @@ function renderProfileRole(screen) {
 
 function renderLoader(screen) {
   const wrap = baseContent(screen);
-  const card = el("div", "loader-card");
-  card.appendChild(el("div", "loader-orbit", "<span></span><span></span><span></span>"));
+  const card = el("div", `loader-card${screen.variant ? ` ${screen.variant}` : ""}`);
+  if (screen.icon) {
+    card.appendChild(el("div", "loader-symbol", screen.icon));
+  } else {
+    card.appendChild(el("div", "loader-orbit", "<span></span><span></span><span></span>"));
+  }
   const loaderProgress = el("div", "loader-progress", "<span></span>");
   loaderProgress.style.setProperty("--loader-duration", `${screen.duration || 1600}ms`);
   card.appendChild(loaderProgress);
@@ -898,13 +1073,21 @@ function renderSingle(screen) {
 
 function renderSingleReveal(screen) {
   const wrap = baseContent(screen);
-  const selectedLabel = state.answers[screen.key];
-  const selectedOption = screen.options.find((option) => option.label === selectedLabel);
+  const max = screen.max || 1;
+  const rawAnswer = state.answers[screen.key];
+  const selectedLabels = Array.isArray(rawAnswer) ? rawAnswer : rawAnswer ? [rawAnswer] : [];
+  const selectedOptions = screen.options.filter((option) => selectedLabels.includes(option.label));
   const options = el("div", "options reveal-options");
   screen.options.forEach((option) => {
-    const isSelected = selectedLabel === option.label;
+    const isSelected = selectedLabels.includes(option.label);
     options.appendChild(choiceButton(option, isSelected, () => {
-      state.answers[screen.key] = option.label;
+      let nextSelected = selectedLabels;
+      if (isSelected) {
+        nextSelected = selectedLabels.filter((label) => label !== option.label);
+      } else if (selectedLabels.length < max) {
+        nextSelected = [...selectedLabels, option.label];
+      }
+      state.answers[screen.key] = max === 1 ? nextSelected[0] || "" : nextSelected;
       render();
     }));
     if (isSelected && option.reveal) {
@@ -920,10 +1103,13 @@ function renderSingleReveal(screen) {
   wrap.appendChild(options);
 
   const nextButton = button("Продолжить", "primary", () => {
-    applyOption(selectedOption);
+    selectedOptions.forEach((option) => {
+      applyOption(option);
+      if (option.direction) bumpDirection(option.direction, 2);
+    });
     next();
   });
-  nextButton.disabled = !selectedOption;
+  nextButton.disabled = selectedOptions.length < (screen.min || 1);
   wrap.appendChild(nextButton);
   return wrap;
 }
@@ -1108,16 +1294,54 @@ function renderQuickCards(screen) {
 
 function renderFavoriteWork(screen) {
   const wrap = baseContent(screen);
-  const saved = state.answers[screen.key] || { rhythm: "", format: "", value: "" };
-  const form = el("div", "favorite-work");
+  const selected = new Set(Array.isArray(state.answers[screen.key]) ? state.answers[screen.key] : []);
+  const min = screen.min || 3;
+  const max = screen.max || 5;
+  const form = el("div", "favorite-work bead-work");
+  const string = el("div", "bead-string");
+  const selectedOptions = screen.options.filter((option) => selected.has(option.label));
 
-  form.appendChild(favoriteGroup(screen, saved, "rhythm"));
-  form.appendChild(favoriteGroup(screen, saved, "format"));
-  form.appendChild(favoriteGroup(screen, saved, "value"));
+  string.appendChild(el("div", "bead-counter", `На нити: ${selected.size} из ${max}`));
+  string.appendChild(el("div", "bead-cord", "<span></span>"));
+  const selectedBeads = el("div", "selected-beads");
+  if (selectedOptions.length) {
+    selectedOptions.forEach((option) => {
+      const selectedBead = el("button", "selected-bead", `${option.icon}<span>${option.label}</span>`);
+      selectedBead.type = "button";
+      selectedBead.addEventListener("click", () => {
+        selected.delete(option.label);
+        state.answers[screen.key] = [...selected];
+        render();
+      });
+      selectedBeads.appendChild(selectedBead);
+    });
+  } else {
+    selectedBeads.appendChild(el("em", "", "Нажимайте на бусины — они появятся на нити"));
+  }
+  string.appendChild(selectedBeads);
+  form.appendChild(string);
+
+  const beads = el("div", "bead-bank");
+  screen.options.forEach((option) => {
+    const isSelected = selected.has(option.label);
+    const bead = el("button", `work-bead${isSelected ? " selected" : ""}`, `<span>${option.icon}</span><strong>${option.label}</strong>`);
+    bead.type = "button";
+    bead.addEventListener("click", () => {
+      if (isSelected) {
+        selected.delete(option.label);
+      } else if (selected.size < max) {
+        selected.add(option.label);
+      }
+      state.answers[screen.key] = [...selected];
+      render();
+    });
+    beads.appendChild(bead);
+  });
+  form.appendChild(beads);
   wrap.appendChild(form);
 
-  const nextButton = button("Продолжить", "primary", next);
-  nextButton.disabled = !saved.rhythm || !saved.format || !saved.value;
+  const nextButton = button(selected.size >= min ? "Продолжить" : `Выберите еще ${min - selected.size}`, "primary", next);
+  nextButton.disabled = selected.size < min;
   wrap.appendChild(nextButton);
   return wrap;
 }
@@ -1171,6 +1395,41 @@ function renderRange(screen) {
 
 function renderInsight(screen) {
   const wrap = baseContent(screen);
+  if (screen.facts?.length) {
+    const facts = el("div", "insight-facts");
+    screen.facts.forEach((fact) => {
+      facts.appendChild(el("div", "insight-fact", `<strong>${fact.value}</strong><span>${fact.label}</span>`));
+    });
+    wrap.appendChild(facts);
+  }
+  if (screen.image) {
+    wrap.appendChild(el("div", `stage-image${screen.facts?.length ? " compact" : ""}`, `<img src="${screen.image}" alt="" />`));
+  }
+  if (screen.startVisual) {
+    wrap.appendChild(
+      el(
+        "div",
+        "new-start-visual",
+        `
+          <span class="start-dot one"></span>
+          <span class="start-dot two"></span>
+          <span class="start-dot three"></span>
+          <div class="start-path"></div>
+          <strong>Новый старт</strong>
+        `,
+      ),
+    );
+  }
+  if (screen.supportCards?.length) {
+    const support = el("div", "support-cards");
+    screen.supportCards.forEach((card) => {
+      support.appendChild(el("div", "support-card", `<span>${card.icon}</span><strong>${card.title}</strong><p>${card.text}</p>`));
+    });
+    wrap.appendChild(support);
+  }
+  if (screen.badge) {
+    wrap.appendChild(el("div", "stage-mini-badge", personalize(screen.badge)));
+  }
   wrap.appendChild(button(screen.button, "primary", next));
   return wrap;
 }
@@ -1307,7 +1566,7 @@ function renderBattery(screen) {
       if (item) chips.appendChild(el("span", "", `${item.icon} ${item.label}`));
     });
   } else {
-    chips.appendChild(el("em", "", "Добавьте несколько пунктов, которые хочется вернуть"));
+    chips.appendChild(el("em", "", "Добавьте до 4 пунктов, которые хочется вернуть"));
   }
   batteryCard.appendChild(meter);
   batteryCard.appendChild(chips);
@@ -1482,13 +1741,25 @@ function renderProof(screen) {
   const wrap = baseContent(screen);
   wrap.classList.add("proof-content");
   const grid = el("div", "proof-grid");
-  screen.cards.forEach((card) => {
-    const node = el("div", "proof-card");
+  const reactions = state.answers.proofReactions || {};
+  const defaultReactions = [428, 316, 219, 503, 284, 197];
+  screen.cards.forEach((card, index) => {
+    const node = el("button", `proof-card${reactions[index] ? " reacted" : ""}`);
+    const reactionCount = (defaultReactions[index] || 180) + (reactions[index] ? 1 : 0);
+    node.type = "button";
+    node.addEventListener("click", () => {
+      state.answers.proofReactions = {
+        ...reactions,
+        [index]: reactions[index] ? "" : "👍",
+      };
+      render();
+    });
     node.appendChild(el("span", "proof-icon", card.icon || "✓"));
     const copy = el("div", "proof-card-copy");
     copy.appendChild(el("strong", "", card.title));
     copy.appendChild(el("p", "", card.text));
     node.appendChild(copy);
+    node.appendChild(el("span", `proof-reaction-badge${reactions[index] ? " active" : ""}`, `<b>👍</b><strong>${reactionCount}</strong>`));
     grid.appendChild(node);
   });
   wrap.appendChild(grid);
@@ -1600,39 +1871,74 @@ function renderDiscountGame(screen) {
         "<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>",
       ),
     );
-    game.appendChild(
+    const modal = el("div", "discount-modal");
+    modal.appendChild(
       el(
         "div",
         "discount-result",
         `<strong>Вау, вот это интуиция — вы открыли максимальную скидку 50%</strong><span>Ваш промокод: <b>${state.discount.code}</b></span><span>Скидка действует до ${state.discount.deadline}</span>`,
       ),
     );
+    modal.appendChild(button("Забрать результат и скидку", "primary", next));
     wrap.appendChild(game);
-    wrap.appendChild(button("Забрать результат и скидку", "primary", next));
+    wrap.appendChild(modal);
     return wrap;
   }
 
-  game.appendChild(el("div", "discount-hint", "Подсказка: выбирайте быстро, здесь важна первая реакция."));
+  game.appendChild(el("div", "discount-hint", `Подсказка: ${screen.hint || "выбирайте быстро, здесь важна первая реакция."}`));
   wrap.appendChild(game);
   return wrap;
 }
 
 function renderLead(screen) {
   const wrap = baseContent(screen);
-  const card = el("form", "form-card fields");
+  const result = calculateResult();
+  const topProfession = result.professions[0];
+  const preview = el(
+    "div",
+    "locked-result-preview",
+    `
+      <div class="locked-card main">
+        <div class="lock-badge" aria-hidden="true">🔒</div>
+        <span>Ваше направление</span>
+        <strong>${topProfession.name}</strong>
+        <div><b>${topProfession.percent}%</b><em>совместимость</em></div>
+      </div>
+      <div class="locked-card">
+        <span>Доход на старте</span>
+        <strong>от ${topProfession.salary}</strong>
+      </div>
+      <div class="locked-card">
+        <span>Через 2–3 года</span>
+        <strong>${topProfession.salaryPotential}</strong>
+      </div>
+    `,
+  );
+  const card = el("form", "form-card fields lead-unlock-card");
   const email = field("Email", "email", "name@email.com", state.lead.email);
   const phone = field("Телефон", "tel", "+7 999 123-45-67", state.lead.phone);
+  const consent = el(
+    "label",
+    "consent-check",
+    `<input type="checkbox" ${state.lead.consent ? "checked" : ""} /> <span>Я соглашаюсь на <a href="https://skillbox.ru/legal-docs/chou/file/soglasie_na_obrabotku_personalnyh_dannyh/version-170226.pdf" target="_blank" rel="noopener noreferrer">обработку персональных данных</a></span>`,
+  );
+  const consentInput = consent.querySelector("input");
   const error = el("div", "error");
   card.appendChild(email.wrap);
   card.appendChild(phone.wrap);
+  card.appendChild(consent);
   card.appendChild(error);
-  const submit = button("Показать результат", "primary");
+  const submit = button("Открыть результат", "primary");
   submit.type = "submit";
   card.appendChild(submit);
+  consentInput.addEventListener("change", () => {
+    state.lead.consent = consentInput.checked;
+  });
   card.addEventListener("submit", (event) => {
     event.preventDefault();
     state.lead.email = email.input.value.trim();
     state.lead.phone = phone.input.value.trim();
+    state.lead.consent = consentInput.checked;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.lead.email)) {
       error.textContent = "Введите корректный email, чтобы открыть результат.";
       return;
@@ -1642,9 +1948,16 @@ function renderLead(screen) {
       error.textContent = "Введите номер телефона, чтобы эксперт мог связаться с вами.";
       return;
     }
+    if (!state.lead.consent) {
+      error.textContent = "Подтвердите согласие на обработку персональных данных.";
+      return;
+    }
     next();
   });
-  wrap.appendChild(card);
+  const gate = el("div", "result-gate");
+  gate.appendChild(preview);
+  gate.appendChild(card);
+  wrap.appendChild(gate);
   return wrap;
 }
 
@@ -1808,7 +2121,6 @@ function renderResult() {
 
 function renderOffer() {
   const wrap = el("div", "content");
-  wrap.appendChild(el("div", "eyebrow", "Следующий шаг"));
   wrap.appendChild(el("h2", "", "Разберите результат с карьерным экспертом"));
   wrap.appendChild(el("p", "", "На консультации вы проверите гипотезу профессии, выберете реалистичный маршрут обучения и поймете, как переходить без резких движений."));
   const offer = el("div", "offer");
@@ -2399,6 +2711,12 @@ function recomputeScores() {
     }
 
     if (screen.type === "single" || screen.type === "single_reveal") {
+      if (Array.isArray(answer)) {
+        screen.options
+          .filter((option) => answer.includes(option.label))
+          .forEach((option) => addScores(scores, option));
+        return;
+      }
       const option = screen.options.find((item) => item.label === answer);
       addScores(scores, option);
       return;
@@ -2448,12 +2766,9 @@ function recomputeScores() {
     }
 
     if (screen.type === "favorite_work") {
-      Object.entries(screen.groups).forEach(([groupKey, group]) => {
-        const selected = Array.isArray(answer[groupKey]) ? answer[groupKey] : [answer[groupKey]];
-        group.options
-          .filter((option) => selected.includes(option.label))
-          .forEach((option) => addScores(scores, option));
-      });
+      screen.options
+        .filter((option) => answer.includes(option.label))
+        .forEach((option) => addScores(scores, option));
       return;
     }
 
@@ -2555,7 +2870,7 @@ function reset() {
   state.step = 0;
   state.answers = {};
   state.scores = { energy: 0, meaning: 0, growth: 0, autonomy: 0, readiness: 0 };
-  state.lead = { name: "", email: "", phone: "" };
+  state.lead = { name: "", email: "", phone: "", consent: false };
   state.discount = null;
   state.consultationRequested = false;
   render();
