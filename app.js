@@ -16,6 +16,7 @@ const state = {
   discount: null,
   timers: [],
   consultationRequested: false,
+  expandedStoryId: null,
 };
 
 const axes = {
@@ -304,10 +305,10 @@ const screens = [
   },
   {
     type: "loader",
-    title: "{name}, настраиваем диагностику под ваш контекст",
-    text: "Учитываем ваш ритм, фон и то, что хочется вернуть в жизнь.",
+    title: "{name}, собираем картину по вашим ответам",
+    text: "Смотрим, что сейчас забирает силы, чего не хватает и что хочется вернуть в жизнь.",
     duration: 15000,
-    steps: ["Собираем эмоциональный фон", "Определяем зоны напряжения", "Настраиваем логику результата"],
+    steps: ["Учитываем ваш текущий ритм", "Ищем, где больше всего напряжения", "Готовим следующие вопросы точнее под вас"],
   },
   {
     type: "stage",
@@ -315,8 +316,12 @@ const screens = [
     visual: "recovery",
     visualOnly: true,
     title: "{name}, теперь посмотрим глубже",
-    text: "Мы настроили диагностику под вас. Сейчас посмотрим, возвращает ли вам отдых силы, спокойствие и интерес — после сна, выходных, прогулок или времени для себя.",
-    badge: "Если после отдыха сил не становится больше, причина может быть глубже обычной усталости.",
+    text: "Мы настроили диагностику под вас. Теперь проверим, как восстанавливается ресурс.",
+    bullets: [
+      { icon: "😴", text: "возвращаются ли силы после сна и выходных" },
+      { icon: "🌿", text: "становится ли спокойнее после прогулок или времени для себя" },
+      { icon: "🔎", text: "если легче не становится, причина может быть глубже обычной усталости" },
+    ],
     image: "assets/recovery-depth-illustration.png",
     tags: ["перезагрузка", "отключение от дел", "глубина состояния"],
     source: "Sonnentag & Fritz, модель восстановления от рабочего стресса",
@@ -339,10 +344,10 @@ const screens = [
     text: "Это помогает понять: вы отдыхаете или просто пытаетесь заглушить усталость.",
     key: "recoveryBehavior",
     options: [
-      { icon: "📱", label: "Залипаю", note: "чтобы выключить мысли", scores: { energy: 2 } },
-      { icon: "🏃", label: "Догоняю дела", note: "иначе тревожно", scores: { energy: 2, autonomy: 1 } },
-      { icon: "🙈", label: "Откладываю отдых", note: "сначала надо быть полезным", scores: { autonomy: 2, energy: 1 } },
-      { icon: "💭", label: "Думаю о переменах", note: "но быстро глушу мысль", scores: { readiness: 2, meaning: 1 } },
+      { icon: "📱", label: "Открываю телефон и пропадаю", note: "так проще не думать о делах", scores: { energy: 2 } },
+      { icon: "🏃", label: "Сразу закрываю накопившиеся задачи", note: "иначе не получается расслабиться", scores: { energy: 2, autonomy: 1 } },
+      { icon: "🙈", label: "Обещаю себе отдохнуть позже", note: "кажется, что сначала нужно быть полезным", scores: { autonomy: 2, energy: 1 } },
+      { icon: "💭", label: "Думаю, что пора что-то менять", note: "но быстро откладываю эту мысль", scores: { readiness: 2, meaning: 1 } },
     ],
   },
   {
@@ -352,16 +357,16 @@ const screens = [
     text: "Выберите то, что больше похоже на внутренний фон в последние недели.",
     key: "innerDialogue",
     options: [
-      { icon: "🔁", label: "“Каждый день как копия прошлого”", scores: { meaning: 2, energy: 1 } },
-      { icon: "🪫", label: "“Я просто дотягиваю до вечера”", scores: { energy: 3 } },
-      { icon: "📉", label: "“Я стараюсь, но ничего не меняется”", scores: { growth: 2, meaning: 1 } },
-      { icon: "🧭", label: "“Хочу перемен, но не понимаю с чего начать”", scores: { readiness: 2, meaning: 1 } },
+      { icon: "🔁", label: "“Кажется, я живу один и тот же день”", scores: { meaning: 2, energy: 1 } },
+      { icon: "🪫", label: "“Мне бы просто дотянуть до вечера”", scores: { energy: 3 } },
+      { icon: "📉", label: "“Я вкладываюсь, но ничего особо не меняется”", scores: { growth: 2, meaning: 1 } },
+      { icon: "🧭", label: "“Хочется перемен, но я не понимаю, с чего начать”", scores: { readiness: 2, meaning: 1 } },
     ],
   },
   {
     type: "free_draw",
     eyebrow: "Динамика",
-    title: "Если бы ваше состояние было линией — какой бы она была?",
+    title: "Если бы ваше состояние в течение дня было линией — какой бы она была?",
     text: "Просто проведите линию пальцем или мышью.",
     key: "stateLine",
     options: [
@@ -385,21 +390,15 @@ const screens = [
     ],
   },
   {
-    type: "loader",
-    title: "Секундочку",
-    text: "Записываем ваши ответы для составления персонального профиля.",
-    duration: 3000,
-    icon: "⏳",
-    variant: "technical",
-    steps: ["Фиксируем ответы", "Собираем первые сигналы", "Готовим следующий блок"],
-  },
-  {
     type: "stage",
     eyebrow: "Ищем источник состояния",
     visual: "work",
-    title: "Проверим, как на вас влияет работа",
-    text: "Часто усталость, потеря интереса и ощущение «автопилота» связаны не с человеком, а со средой, в которой он проводит большую часть дня. Работа, профессия, задачи и уровень нагрузки могут незаметно забирать ресурс. Давайте проверим, есть ли это у вас.",
-    badge: "Один из главных источников напряжения — то, чем мы заняты каждый день",
+    title: "Проверим, как на вас влияет ваша работа",
+    text: "Часто усталость, потеря интереса и ощущение «автопилота» связаны не с человеком, а со средой, в которой он проводит большую часть дня.",
+    bullets: [
+      { icon: "💼", text: "работа, профессия, задачи и уровень нагрузки могут незаметно забирать ресурс" },
+      { icon: "🧭", text: "давайте проверим, есть ли это у вас" },
+    ],
     image: "assets/work-impact-illustration.png",
     tags: ["ежедневная среда", "работа и задачи", "самочувствие"],
     button: "Оценить влияние работы",
@@ -504,28 +503,31 @@ const screens = [
     ],
   },
   {
-    type: "loader",
-    title: "Секундочку",
-    text: "Сверяем ваши ответы и ищем главный источник напряжения.",
-    duration: 3000,
-    icon: "⏳",
-    variant: "technical",
-    steps: ["Проверяем ответы о работе", "Сопоставляем с признаками усталости", "Готовим вывод"],
-  },
-  {
     type: "insight",
     eyebrow: "Важный вывод",
     visual: "research",
     title: "Возможно, вам пора сменить вектор",
-    text: "По вашим ответам видно: текущая деятельность может быть одним из главных источников усталости и потери интереса. Теперь проверим ваши склонности и сильные стороны, чтобы подобрать потенциальные направления для перехода.",
+    text: "По вашим ответам видно: текущая деятельность может быть одним из источников усталости и потери интереса.",
+    bullets: [
+      { icon: "🧭", text: "дальше проверим ваши склонности и сильные стороны" },
+      { icon: "🎯", text: "подберем потенциальные направления для перехода" },
+    ],
     image: "assets/vector-change-illustration.png",
+    tags: ["личный сигнал", "проверим гипотезу", "без резкого рывка"],
+    button: "Продолжить",
+  },
+  {
+    type: "insight",
+    eyebrow: "Это нормально",
+    title: "Менять вектор — не страшно и не поздно",
+    text: "Многие пересматривают профессию, когда старая роль перестает давать энергию, интерес или рост.",
     facts: [
       { value: "62%", label: "россиян пересмотрели бы выбор профессии" },
-      { value: "23%", label: "уже сменили профессию за последние 2 года" },
+      { value: "23%", label: "сменили профессию за последние 2 года" },
       { value: "30+", label: "частый возраст для смены карьерного вектора" },
     ],
     tags: ["это не редкость", "можно проверить новое направление", "переход без резкого рывка"],
-    button: "Оценить мои склонности",
+    button: "Узнать, какие направления мне подойдут",
   },
   {
     type: "single",
@@ -550,21 +552,21 @@ const screens = [
     min: 2,
     limit: 2,
     options: [
-      { icon: "🖥️", label: "Сделать лендинг", direction: "technical" },
-      { icon: "📉", label: "Посчитать падение продаж", direction: "analytical" },
-      { icon: "✨", label: "Придумать рекламный креатив", direction: "creative" },
-      { icon: "📊", label: "Настроить таблицу/дашборд", direction: "analytical" },
-      { icon: "🎤", label: "Провести интервью и найти инсайты", direction: "communication" },
+      { icon: "🖥️", label: "Собрать простой сайт", direction: "technical" },
+      { icon: "📉", label: "Понять, почему стало меньше продаж", direction: "analytical" },
+      { icon: "✨", label: "Придумать идею для рекламы", direction: "creative" },
+      { icon: "📊", label: "Разложить данные в понятную таблицу", direction: "analytical" },
+      { icon: "🎤", label: "Поговорить с людьми и понять, что им нужно", direction: "communication" },
       { icon: "🎬", label: "Написать сценарий для видео", direction: "creative" },
-      { icon: "🤖", label: "Собрать чат-бота", direction: "technical" },
-      { icon: "🚀", label: "Организовать запуск проекта", direction: "system" },
+      { icon: "🤖", label: "Сделать помощника, который отвечает в чате", direction: "technical" },
+      { icon: "🚀", label: "Организовать запуск новой идеи", direction: "system" },
     ],
   },
   {
     type: "work_sliders",
     eyebrow: "Рабочая среда",
-    title: "В каком формате вам легче раскрыться?",
-    text: "Сравним не профессии, а ощущения от работы: с кем, как и в каком темпе вам комфортнее двигаться.",
+    title: "Чего в работе мечты должно быть меньше, а чего больше?",
+    text: "Передвиньте шкалы туда, где вам комфортнее: люди или задачи, скорость или глубина, идеи или порядок.",
     key: "workFormat",
     sliders: [
       { id: "people_systems", left: "Чаще общаться с людьми", right: "Больше работать с задачами и системами", leftDirection: "communication", rightDirection: "system" },
@@ -602,45 +604,53 @@ const screens = [
     min: 3,
     max: 5,
     options: [
-      { icon: "🌿", label: "Без вечной гонки", direction: "analytical", scores: { energy: 1 } },
-      { icon: "🏡", label: "Работать из дома", direction: "technical", scores: { autonomy: 1 } },
-      { icon: "🗓️", label: "Гибкий график", direction: "system", scores: { autonomy: 1 } },
-      { icon: "⚡", label: "Чтобы было живо", direction: "technical", scores: { readiness: 1 } },
-      { icon: "🎨", label: "Делать по-своему", direction: "creative", scores: { meaning: 1 } },
-      { icon: "📈", label: "Видеть, что расту", direction: "analytical", scores: { growth: 1 } },
-      { icon: "🕊️", label: "Больше свободы", direction: "technical", scores: { autonomy: 1 } },
-      { icon: "💰", label: "Доход без тревоги", direction: "analytical", scores: { growth: 1 } },
-      { icon: "🎯", label: "Понимать, зачем", direction: "communication", scores: { meaning: 1 } },
-      { icon: "🤝", label: "Люди, с кем спокойно", direction: "system", scores: { autonomy: 1 } },
-      { icon: "🧩", label: "Ясные задачи", direction: "system", scores: { readiness: 1 } },
+      { icon: "🌿", label: "Работать без постоянной гонки", direction: "analytical", scores: { energy: 1 } },
+      { icon: "🏡", label: "Можно работать из дома", direction: "technical", scores: { autonomy: 1 } },
+      { icon: "🗓️", label: "График, который можно подстроить под жизнь", direction: "system", scores: { autonomy: 1 } },
+      { icon: "⚡", label: "Задачи, где есть движение и драйв", direction: "technical", scores: { readiness: 1 } },
+      { icon: "🎨", label: "Можно делать по-своему, а не только по инструкции", direction: "creative", scores: { meaning: 1 } },
+      { icon: "📈", label: "Понятно, как расти дальше", direction: "analytical", scores: { growth: 1 } },
+      { icon: "🕊️", label: "Больше свободы в решениях", direction: "technical", scores: { autonomy: 1 } },
+      { icon: "💰", label: "Доход, за который спокойнее", direction: "analytical", scores: { growth: 1 } },
+      { icon: "🎯", label: "Понимать, зачем я это делаю", direction: "communication", scores: { meaning: 1 } },
+      { icon: "🤝", label: "Команда, с которой спокойно работать", direction: "system", scores: { autonomy: 1 } },
+      { icon: "🧩", label: "Понятные задачи без постоянного хаоса", direction: "system", scores: { readiness: 1 } },
     ],
   },
   {
     type: "insight",
     eyebrow: "Почти готово",
     visual: "plan",
-    title: "У вас есть сильные стороны для нового старта",
+    title: "{name}, у вас есть сильные стороны для перехода в новую профессию",
     text: "По ответам видно: у вас есть потенциал для перехода. Менять всё резко не нужно — путь можно пройти мягко.",
-    badge: "Skillbox уже помог тысячам студентов освоить новую профессию и сделать первый шаг к работе мечты",
-    startVisual: true,
     supportCards: [
       { icon: "🎓", title: "Обучение", text: "Освоить новое направление постепенно" },
       { icon: "🧩", title: "Практика", text: "Попробовать себя на первых проектах" },
       { icon: "🤝", title: "Поддержка", text: "Двигаться рядом с наставниками" },
     ],
     tags: ["влияние работы заметно", "без резких увольнений", "с понятным первым шагом"],
+    button: "Продолжить",
+  },
+  {
+    type: "insight",
+    title: "Skillbox уже помог тысячам людей перейти в новую профессию",
+    text: "Посмотрите на наших выпускников: они тоже начинали с сомнений, а потом через обучение, практику и первые проекты нашли любимое дело и пришли к работе, о которой мечтали.",
+    storyCarousel: [
+      { id: "alexandr", title: "20 лет на железной дороге → новая профессия в IT", accent: "смена сферы" },
+      { id: "marketplaces", title: "Воспитатель → менеджер маркетплейсов", accent: "новая профессия" },
+      { id: "offer", title: "Обучение → оффер через месяц", accent: "быстрый результат" },
+      { id: "international", title: "Портфолио с нуля → работа в международной компании", accent: "оффер мечты" },
+      { id: "world-job", title: "Поиск нового формата → работа из любой точки мира", accent: "удаленный формат" },
+    ],
+    tags: ["смена сферы", "первые проекты", "новая работа"],
     button: "Собрать мой результат",
   },
   {
     type: "single",
     eyebrow: "Честная самопроверка",
-    title: "{name}, честно: вы готовы менять свою жизнь?",
-    text: "Перед тем как показать результат, важно зафиксировать не “правильный” ответ, а ваш настоящий. Признайтесь себе честно: вы хотите перемен или пока только присматриваетесь?",
-    highlight: "Перед тем как показать результат",
-    saveHint: {
-      title: "Учитываем ваш ответ",
-      text: "в персональном результате",
-    },
+    title: "{name}, и последний вопрос: вы готовы к переменам?",
+    text: "Мы почти забыли спросить самое главное.",
+    quote: "Готовность — это не отсутствие страха. Это решение двигаться, несмотря на него.",
     key: "changeReadiness",
     options: [
       { icon: "✅", label: "Да, я хочу перемен и готов(а) действовать", scores: { readiness: 3, meaning: 1 } },
@@ -653,9 +663,9 @@ const screens = [
     type: "loader",
     eyebrow: "Анализируем результаты",
     title: "Собираем ваш профиль",
-    text: "Соединяем ответы, мини-задачи и карту направлений в один результат.",
+    text: "Собираем ваши ответы в понятный результат: что сейчас забирает силы, на что можно опереться и какие направления могут подойти.",
     duration: 15000,
-    steps: ["Считаем 5 осей состояния", "Подбираем архетип", "Собираем 2–3 профессии"],
+    steps: ["Понимаем, где уходит энергия", "Выделяем ваши сильные стороны", "Подбираем направления для перехода"],
   },
   {
     type: "lead",
@@ -666,9 +676,9 @@ const screens = [
   {
     type: "discount_game",
     eyebrow: "Бонус перед результатом",
-    title: "{name}, откройте персональную скидку на обучение",
-    text: "Мы хотим, чтобы путь к новой жизни начался для вас на максимально выгодных условиях. Поэтому перед результатом разыгрываем большую скидку на обучение в Skillbox — выберите карту, к которой тянет сильнее всего.",
-    hint: "Выбирайте быстро: здесь важна первая реакция",
+    title: "{name}, хотим сделать ваш первый шаг к изменениям чуть проще",
+    text: "Перед результатом разыгрываем персональную скидку на обучение любой новой профессии в Skillbox.",
+    hint: "Выберите одну карту и попробуйте найти максимальную скидку 😉",
     key: "discountGame",
     cards: [
       { id: "left", label: "Карта A" },
@@ -682,6 +692,7 @@ const screens = [
 ];
 
 const totalScreens = screens.length;
+const discountAutoAdvanceSeconds = 5;
 
 const screenEl = document.querySelector("#quizScreen");
 const phoneEl = document.querySelector(".phone");
@@ -710,12 +721,17 @@ if (previewMode === "lead") {
   state.answers = {
     ...state.answers,
     projectStart: "Понять людей",
-    firstTasks: ["Провести интервью и найти инсайты", "Придумать рекламный креатив"],
+    firstTasks: ["Поговорить с людьми и понять, что им нужно", "Придумать идею для рекламы"],
   };
 }
 
 if (previewMode === "vector") {
   state.step = screens.findIndex((screen) => screen.title === "Возможно, вам пора сменить вектор");
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "vector-normal") {
+  state.step = screens.findIndex((screen) => screen.title === "Менять вектор — не страшно и не поздно");
   state.lead.name = "Анастасия";
 }
 
@@ -725,14 +741,71 @@ if (previewMode === "favorite") {
 }
 
 if (previewMode === "strengths") {
-  state.step = screens.findIndex((screen) => screen.title === "У вас есть сильные стороны для нового старта");
+  state.step = screens.findIndex((screen) => screen.title?.includes("сильные стороны для перехода"));
   state.lead.name = "Анастасия";
+}
+
+if (previewMode === "stories") {
+  state.step = screens.findIndex((screen) => screen.storyCarousel?.length);
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "profile-loader") {
+  state.step = screens.findIndex((screen) => screen.type === "loader" && screen.title === "Собираем ваш профиль");
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "readiness") {
+  state.step = screens.findIndex((screen) => screen.key === "changeReadiness");
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "work") {
+  state.step = screens.findIndex((screen) => screen.title === "Проверим, как на вас влияет ваша работа");
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "drain") {
+  state.step = screens.findIndex((screen) => screen.key === "drain");
+  state.lead.name = "Анастасия";
+}
+
+if (previewMode === "recovery") {
+  state.step = screens.findIndex((screen) => screen.eyebrow === "Глубина состояния");
+  state.lead.name = "Леонид";
+}
+
+if (previewMode === "free-time") {
+  state.step = screens.findIndex((screen) => screen.key === "recoveryBehavior");
+  state.lead.name = "Леонид";
+}
+
+if (previewMode === "inner-dialogue") {
+  state.step = screens.findIndex((screen) => screen.key === "innerDialogue");
+  state.lead.name = "Леонид";
+}
+
+if (previewMode === "result") {
+  state.step = screens.findIndex((screen) => screen.type === "result");
+  state.lead.name = "Анастасия";
+  state.discount = {
+    percent: 50,
+    code: createPromoCode(state.lead.name),
+    deadline: getDiscountDeadline(),
+  };
+  state.answers = {
+    ...state.answers,
+    projectStart: "Понять людей",
+    firstTasks: ["Поговорить с людьми и понять, что им нужно", "Придумать идею для рекламы"],
+    favoriteWork: ["Больше свободы", "Доход без тревоги", "Видеть, что расту"],
+  };
 }
 
 function render() {
   const screen = screens[state.step];
   const progressPercent = Math.round(((state.step + 1) / totalScreens) * 100);
   clearTimers();
+  document.querySelectorAll(".story-modal").forEach((modal) => modal.remove());
   phoneEl.classList.toggle("result-mode", screen.type === "result");
   phoneEl.classList.toggle("intro-mode", screen.type === "intro");
   stepLabel.textContent = `${progressPercent}%`;
@@ -771,24 +844,7 @@ function render() {
 
   screenEl.innerHTML = "";
   const renderedScreen = renderers[screen.type](screen);
-  if (shouldShowSaveHint(screen)) {
-    renderedScreen.appendChild(renderSaveHint());
-  }
   screenEl.appendChild(renderedScreen);
-}
-
-function shouldShowSaveHint(screen) {
-  return !["intro", "stage", "insight", "loader", "discount_game", "lead", "result", "offer", "proof"].includes(screen.type);
-}
-
-function renderSaveHint() {
-  const screen = screens[state.step];
-  const hint = screen.saveHint || { title: "Сохраняем ответ", text: "для персонального результата" };
-  return el(
-    "div",
-    "save-hint",
-    `<span aria-hidden="true"></span><strong>${hint.title}</strong><small>${hint.text}</small>`,
-  );
 }
 
 function getRemainingTimeLabel() {
@@ -809,7 +865,10 @@ function pluralizeMinute(value) {
 }
 
 function scrollToScreenTop() {
-  window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0 }));
+  window.requestAnimationFrame(() => {
+    screenEl.scrollTo({ top: 0, left: 0 });
+    window.scrollTo({ top: 0, left: 0 });
+  });
 }
 
 function baseContent(screen) {
@@ -864,6 +923,7 @@ function renderIntro(screen) {
         <span>✓ причина</span>
         <span>✓ перспективы</span>
         <span>✓ план</span>
+        <span>✓ рекомендации</span>
       </div>
     </div>
   `;
@@ -891,6 +951,13 @@ function renderIntro(screen) {
 
 function renderStage(screen) {
   const wrap = baseContent(screen);
+  if (screen.bullets?.length) {
+    const bullets = el("div", "stage-bullets");
+    screen.bullets.forEach((item) => {
+      bullets.appendChild(el("div", "stage-bullet", `<span>${item.icon}</span><strong>${item.text}</strong>`));
+    });
+    wrap.appendChild(bullets);
+  }
   if (screen.image) {
     wrap.appendChild(el("div", "stage-image", `<img src="${screen.image}" alt="" />`));
   }
@@ -930,7 +997,6 @@ function stageVisualMarkup(type = "route", visualOnly = false) {
 function renderProfileName(screen) {
   if (state.answers.nameGreetingShown) {
     const wrap = el("div", "content name-greeting");
-    wrap.appendChild(el("div", "eyebrow", "Настраиваем тест под вас"));
     wrap.appendChild(el("div", "name-emoji", getNameEmoji(state.lead.name), { "aria-hidden": "true" }));
     wrap.appendChild(el("h2", "", `Приятно познакомиться, ${state.lead.name}!`));
     const meaning = getNameMeaning(state.lead.name);
@@ -1058,6 +1124,9 @@ function renderLoader(screen) {
 
 function renderSingle(screen) {
   const wrap = baseContent(screen);
+  if (screen.quote) {
+    wrap.appendChild(el("blockquote", "reflection-quote", `<span aria-hidden="true">💡</span><em>${personalize(screen.quote)}</em>`));
+  }
   const options = el("div", "options");
   screen.options.forEach((option) => {
     options.appendChild(choiceButton(option, state.answers[screen.key] === option.label, () => {
@@ -1080,6 +1149,7 @@ function renderSingleReveal(screen) {
   const options = el("div", "options reveal-options");
   screen.options.forEach((option) => {
     const isSelected = selectedLabels.includes(option.label);
+    const isDisabled = !isSelected && selectedLabels.length >= max;
     options.appendChild(choiceButton(option, isSelected, () => {
       let nextSelected = selectedLabels;
       if (isSelected) {
@@ -1089,7 +1159,7 @@ function renderSingleReveal(screen) {
       }
       state.answers[screen.key] = max === 1 ? nextSelected[0] || "" : nextSelected;
       render();
-    }));
+    }, isDisabled));
     if (isSelected && option.reveal) {
       options.appendChild(
         el(
@@ -1369,6 +1439,10 @@ function favoriteGroup(screen, saved, key) {
 function renderRange(screen) {
   const wrap = baseContent(screen);
   let value = state.answers[screen.key] ?? screen.initial;
+  const setRangeFill = () => {
+    const percent = ((value - Number(input.min)) / (Number(input.max) - Number(input.min))) * 100;
+    input.style.setProperty("--range-fill", `${percent}%`);
+  };
   const card = el("div", "meter-card");
   const valueRow = el("div", "range-value");
   valueRow.innerHTML = `<strong>${value}</strong><span>из 10</span>`;
@@ -1377,12 +1451,13 @@ function renderRange(screen) {
   input.min = screen.min;
   input.max = screen.max;
   input.value = value;
+  setRangeFill();
   input.addEventListener("input", () => {
     value = Number(input.value);
     valueRow.innerHTML = `<strong>${value}</strong><span>из 10</span>`;
+    setRangeFill();
   });
   card.appendChild(valueRow);
-  card.appendChild(el("div", "visual-scale"));
   card.appendChild(input);
   wrap.appendChild(card);
   wrap.appendChild(button("Продолжить", "primary", () => {
@@ -1395,6 +1470,13 @@ function renderRange(screen) {
 
 function renderInsight(screen) {
   const wrap = baseContent(screen);
+  if (screen.bullets?.length) {
+    const bullets = el("div", "stage-bullets insight-bullets");
+    screen.bullets.forEach((item) => {
+      bullets.appendChild(el("div", "stage-bullet", `<span>${item.icon}</span><strong>${item.text}</strong>`));
+    });
+    wrap.appendChild(bullets);
+  }
   if (screen.facts?.length) {
     const facts = el("div", "insight-facts");
     screen.facts.forEach((fact) => {
@@ -1426,6 +1508,33 @@ function renderInsight(screen) {
       support.appendChild(el("div", "support-card", `<span>${card.icon}</span><strong>${card.title}</strong><p>${card.text}</p>`));
     });
     wrap.appendChild(support);
+  }
+  if (screen.storyCarousel?.length) {
+    wrap.appendChild(el("div", "mini-story-scroll-hint", "<span>Листайте истории</span><strong>→</strong>"));
+    const stories = el("div", "mini-story-carousel");
+    const allStories = getSuccessStories();
+    const storyItems = screen.storyCarousel
+      .map((item) => {
+        const storyId = typeof item === "string" ? item : item.id;
+        const story = allStories.find((candidate) => candidate.id === storyId);
+        return story ? { ...story, ...item } : null;
+      })
+      .filter(Boolean);
+    storyItems.forEach((story) => {
+      const card = el("article", "mini-story-card");
+      card.style.setProperty("--story-bg", story.gradient);
+      card.style.setProperty("--story-photo", `url("${story.image}")`);
+      card.innerHTML = `
+        <div class="mini-story-photo"></div>
+        <div class="mini-story-copy">
+          <span>${story.accent}</span>
+          <small>${story.name}</small>
+          <strong>${story.title}</strong>
+        </div>
+      `;
+      stories.appendChild(card);
+    });
+    wrap.appendChild(stories);
   }
   if (screen.badge) {
     wrap.appendChild(el("div", "stage-mini-badge", personalize(screen.badge)));
@@ -1604,22 +1713,20 @@ function renderFreeDraw(screen) {
   const saved = state.answers[screen.key] || {};
   const board = el("div", "draw-board");
   const canvas = document.createElement("canvas");
-  canvas.width = 330;
-  canvas.height = 170;
   canvas.setAttribute("aria-label", "Поле для рисования линии состояния");
-  const ctx = canvas.getContext("2d");
   const points = saved.points || [];
   let drawing = false;
 
   board.appendChild(canvas);
   wrap.appendChild(board);
+  const ctx = setupDrawingCanvas(canvas);
   drawCanvas(ctx, canvas, points);
 
   function pointFromEvent(event) {
     const rect = canvas.getBoundingClientRect();
     return {
-      x: ((event.clientX - rect.left) / rect.width) * canvas.width,
-      y: ((event.clientY - rect.top) / rect.height) * canvas.height,
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
     };
   }
 
@@ -1819,6 +1926,9 @@ function renderDiscountGame(screen) {
   const isRevealing = state.answers[`${screen.key}Revealing`];
   const isRevealed = Boolean(selected) && !isRevealing;
   const game = el("div", "discount-game");
+  if (!isRevealing && !isRevealed) {
+    game.appendChild(el("div", "discount-hint", screen.hint || "выбирайте быстро, здесь важна первая реакция."));
+  }
   const grid = el("div", "discount-cards");
   screen.cards.forEach((card, index) => {
     const isSelected = selected === card.id;
@@ -1879,13 +1989,20 @@ function renderDiscountGame(screen) {
         `<strong>Вау, вот это интуиция — вы открыли максимальную скидку 50%</strong><span>Ваш промокод: <b>${state.discount.code}</b></span><span>Скидка действует до ${state.discount.deadline}</span>`,
       ),
     );
-    modal.appendChild(button("Забрать результат и скидку", "primary", next));
+    let secondsLeft = discountAutoAdvanceSeconds;
+    const cta = button(`Забрать результат и скидку · ${secondsLeft}`, "primary", next);
+    const countdown = window.setInterval(() => {
+      secondsLeft -= 1;
+      cta.textContent = secondsLeft > 0 ? `Забрать результат и скидку · ${secondsLeft}` : "Открываем результат...";
+    }, 1000);
+    const autoAdvance = window.setTimeout(next, discountAutoAdvanceSeconds * 1000);
+    state.timers.push(countdown, autoAdvance);
+    modal.appendChild(cta);
     wrap.appendChild(game);
     wrap.appendChild(modal);
     return wrap;
   }
 
-  game.appendChild(el("div", "discount-hint", `Подсказка: ${screen.hint || "выбирайте быстро, здесь важна первая реакция."}`));
   wrap.appendChild(game);
   return wrap;
 }
@@ -1961,42 +2078,263 @@ function renderLead(screen) {
   return wrap;
 }
 
+function buildStateIndicators(scores) {
+  const tension = scores.energy || 0;
+  const meaning = scores.meaning || 0;
+  const growth = scores.growth || 0;
+  const autonomy = scores.autonomy || 0;
+  return [
+    { icon: "⚡", label: "Уровень энергии", value: Math.max(8, 100 - tension), status: "низкий ресурс", tone: "critical" },
+    { icon: "🌿", label: "Восстановление", value: Math.max(10, 100 - Math.round((tension + autonomy) / 2)), status: "паузы не добирают", tone: "warning" },
+    { icon: "✨", label: "Интерес", value: Math.max(12, 100 - meaning), status: "просел", tone: "warning" },
+    { icon: "🧭", label: "Ясность", value: Math.max(10, 100 - Math.round((meaning + growth) / 2)), status: "нужен вектор", tone: "stable" },
+  ];
+}
+
+function getStateProfileTitle(result) {
+  if (result.title.includes("выживания")) return "Вы в режиме выживания";
+  if (result.title.includes("чужого сценария")) return "Есть признаки потери интереса";
+  if (result.title.includes("Переросли")) return "Накопилась усталость от прежнего сценария";
+  if (result.title.includes("чужом режиме")) return "Вам не хватает своего ритма";
+  return "Пора вернуть себе энергию и интерес";
+}
+
+function getProfessionIcon(key) {
+  return {
+    analytical: "📊",
+    creative: "🎨",
+    communication: "🤖",
+    system: "🧪",
+    technical: "🐍",
+  }[key] || "💼";
+}
+
+function parseSalaryNumbers(value = "") {
+  return value
+    .match(/\d[\d\s]*/g)
+    ?.map((part) => Number(part.replace(/\s/g, "")))
+    .filter(Boolean) || [];
+}
+
+function formatSalary(value) {
+  return `${Math.round(value / 1000) * 1000}`.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function buildSalaryLevels(profession) {
+  const startNumbers = parseSalaryNumbers(profession.salary);
+  const potentialNumbers = parseSalaryNumbers(profession.salaryPotential);
+  const junior = startNumbers[0] || 90000;
+  const lead = potentialNumbers[potentialNumbers.length - 1] || Math.round(junior * 2.6);
+  const middle = potentialNumbers[0] || Math.round((junior + lead) / 2);
+  return [
+    { role: "Junior", period: "до 1 года", amount: `от ${formatSalary(junior)} ₽`, className: "junior" },
+    { role: "Middle", period: "1–3 года", amount: `от ${formatSalary(middle)} ₽`, className: "middle" },
+    { role: "Teamlead", period: "5+ лет", amount: `${formatSalary(lead)} ₽`, className: "lead" },
+  ];
+}
+
+function getSuccessStories() {
+  return [
+    {
+      id: "alexandr",
+      name: "Александр Захаров",
+      title: "Я освоил профессию в IT после 20 лет на железной дороге",
+      profession: "1С-разработчик",
+      accent: "20 лет в другой сфере",
+      emoji: "🚆",
+      image: "./assets/student-stories/alexandr-zakharov.png",
+      gradient: "linear-gradient(145deg, #d4c7ba 0%, #6c625d 52%, #171717 100%)",
+      story:
+        "Александр долго работал на железной дороге и привык иметь дело с большими объемами информации. На Skillbox выбрал 1С-разработку, потому что увидел понятную связь со своим опытом. После обучения получил новую работу с первого собеседования.",
+    },
+    {
+      id: "director",
+      name: "Анастасия Зверева",
+      title: "По моему сценарию снимут кино",
+      profession: "Сценарист",
+      accent: "творческий поворот",
+      emoji: "🎬",
+      image: "./assets/student-stories/anastasia-zvereva.png",
+      gradient: "linear-gradient(145deg, #f3d4bc 0%, #9a5d42 54%, #171717 100%)",
+      story:
+        "Анастасия пришла учиться с желанием писать сильнее и увереннее. Во время обучения собрала структуру истории, получила обратную связь и довела идею до сценария, который заинтересовал продакшен.",
+    },
+    {
+      id: "marketplaces",
+      name: "Дария Киселева",
+      title: "Как воспитатель стала менеджером маркетплейсов",
+      profession: "Менеджер маркетплейсов",
+      accent: "смена профессии",
+      emoji: "🛍️",
+      image: "./assets/student-stories/daria-kiseleva.png",
+      gradient: "linear-gradient(145deg, #f7efe3 0%, #9aa7a0 54%, #1a1a1d 100%)",
+      story:
+        "Дария хотела перейти в более гибкую и современную сферу. Обучение помогло разобраться в аналитике карточек, продвижении товаров и работе с кабинетами продавцов. Первые проекты стали мостиком к новой профессии.",
+    },
+    {
+      id: "analytics",
+      name: "Михаил Судаков",
+      title: "Аналитика любому возрасту покорна",
+      profession: "Аналитик данных",
+      accent: "новый старт после 30",
+      emoji: "📊",
+      image: "./assets/student-stories/mikhail-sudakov.png",
+      gradient: "linear-gradient(145deg, #d8dde8 0%, #6c7480 52%, #111318 100%)",
+      story:
+        "Михаил пришел в аналитику без иллюзии, что все получится за неделю. Шаг за шагом освоил таблицы, визуализацию и базовую работу с данными, а затем начал брать задачи, где опыт и внимательность стали преимуществом.",
+    },
+    {
+      id: "international",
+      name: "Мария Галактионова",
+      title: "Как я устроилась в международную компанию",
+      profession: "UX/UI-дизайнер",
+      accent: "портфолио и оффер",
+      emoji: "🌍",
+      image: "./assets/student-stories/maria-galaktionova.png",
+      gradient: "linear-gradient(145deg, #ede7dc 0%, #787d83 54%, #151515 100%)",
+      story:
+        "Мария собрала портфолио из учебных и личных проектов, научилась презентовать решения и объяснять логику интерфейса. Это помогло пройти от первых откликов до работы в международной команде.",
+    },
+    {
+      id: "dream-film",
+      name: "Алёна Волкова",
+      title: "Я исполнила свою мечту и теперь снимаю кино",
+      profession: "Режиссер монтажа",
+      accent: "мечта стала работой",
+      emoji: "✨",
+      image: "./assets/student-stories/alena-volkova.png",
+      gradient: "linear-gradient(145deg, #f1c6b8 0%, #7f4539 56%, #141414 100%)",
+      story:
+        "Алёна давно хотела связать жизнь с кино, но не понимала, с чего начать. Курс дал ей понятный маршрут: практика, разбор работ, первые ролики и уверенность, что творческую профессию можно собирать по шагам.",
+    },
+    {
+      id: "world-job",
+      name: "Богдан Демченко",
+      title: "Как быстро найти работу в любой точке мира",
+      profession: "Разработчик",
+      accent: "удаленный формат",
+      emoji: "💻",
+      image: "./assets/student-stories/bogdan-demchenko.png",
+      gradient: "linear-gradient(145deg, #cde7ff 0%, #4c83a4 54%, #111418 100%)",
+      story:
+        "Богдан выбрал направление, где можно работать из разных городов и стран. Он сделал упор на практику, портфолио и собеседования, поэтому быстрее вышел на первые предложения от работодателей.",
+    },
+    {
+      id: "offer",
+      name: "Алина Галимова",
+      title: "Приняла оффер через месяц после обучения",
+      profession: "Интернет-маркетолог",
+      accent: "быстрый результат",
+      emoji: "🎉",
+      image: "./assets/student-stories/alina-galimova.png",
+      gradient: "linear-gradient(145deg, #eaded7 0%, #a07065 54%, #191919 100%)",
+      story:
+        "Алина училась с конкретной целью: сменить работу и быстро выйти на рынок. После курса обновила резюме, оформила кейсы и уже через месяц после обучения приняла оффер.",
+    },
+  ];
+}
+
 function renderResult() {
   const result = calculateResult();
-  const [topProfession, secondProfession, thirdProfession] = result.professions;
+  const topProfession = result.professions[0];
+  const stateIndicators = buildStateIndicators(result.normalizedScores);
+  const profileTitle = getStateProfileTitle(result);
   const wrap = el("div", "result-page");
   wrap.appendChild(el("div", "result-kicker", `${state.lead.name || "Ваш"} результат готов`));
+
+  const stateProfile = el("section", "result-diagnostic-hero");
+  stateProfile.innerHTML = `
+    <div class="diagnostic-head">
+      <p>Ваш профиль состояния:</p>
+      <h1>${profileTitle}</h1>
+    </div>
+    <div class="diagnostic-layout">
+      <div class="diagnostic-panel">
+        <div class="panel-title"><span>📊</span><strong>Показатели состояния</strong></div>
+        <div class="state-indicators">
+          ${stateIndicators
+            .map(
+              (item) => `
+                <div class="state-indicator ${item.tone}">
+                  <div class="state-indicator-row">
+                    <span>${item.icon} ${item.label}</span>
+                    <strong>${item.value}%</strong>
+                  </div>
+                  <div class="state-bar"><i style="width: ${item.value}%"></i></div>
+                  <small>${item.status}</small>
+                </div>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+      <div class="diagnostic-signals">
+        <div class="signal-card critical"><span>🪫</span><strong>Истощение</strong><p>ресурс уходит быстрее, чем восстанавливается</p></div>
+        <div class="signal-card warning"><span>🌫️</span><strong>Потеря интереса</strong><p>дела становятся “на автомате”</p></div>
+        <div class="signal-card warning"><span>⏳</span><strong>Накопленная усталость</strong><p>отдых не всегда возвращает силы</p></div>
+        <div class="signal-card accent"><span>🧭</span><strong>Нужен вектор</strong><p>важно понять, где именно уходит ресурс</p></div>
+      </div>
+    </div>
+    <div class="diagnostic-summary">
+      <div class="summary-step"><span>состояние</span><strong>${result.tags[0]}</strong></div>
+      <i></i>
+      <div class="summary-step"><span>фокус проверки</span><strong>источник напряжения</strong></div>
+      <i></i>
+      <div class="summary-step"><span>следующий шаг</span><strong>новый вектор</strong></div>
+    </div>
+  `;
+  wrap.appendChild(stateProfile);
+
+  const bridge = el("section", "result-card-dark result-bridge result-meaning-card");
+  bridge.innerHTML = `
+    <div>
+      <span>Что это значит</span>
+      <h2>Похоже, ваше состояние во многом связано с текущей деятельностью</h2>
+      <p>Это не значит, что с вами что-то не так. Чаще ресурс забирает среда: задачи, темп, отсутствие роста или ощущение, что вы давно не на своем месте.</p>
+    </div>
+    <div class="meaning-points">
+      <div><span>✓</span><strong>Рутина забирает энергию</strong></div>
+      <div><span>✓</span><strong>Отдых не успевает восстанавливать</strong></div>
+      <div class="accent"><span>✓</span><strong>Нужен новый, но мягкий сценарий</strong></div>
+    </div>
+  `;
+  wrap.appendChild(bridge);
+
   if (state.discount) {
     wrap.appendChild(
       el(
         "div",
-        "result-discount",
-        `<div class="result-discount-copy"><span>Ваша персональная скидка на обучение:</span><strong>${state.discount.percent}%</strong><span>Промокод ${state.discount.code} действует до ${state.discount.deadline}</span></div><button class="discount-reserve" type="button">Забронировать скидку</button>`,
+        "result-discount compact-discount",
+        `<div class="result-discount-copy"><span>Персональный бонус на обучение</span><strong>${state.discount.percent}%</strong><span>Промокод ${state.discount.code} действует до ${state.discount.deadline}</span></div><button class="discount-reserve" type="button">Забронировать скидку</button>`,
       ),
     );
   }
 
-  const topGrid = el("div", "result-top-grid");
-  const matchCard = el("section", "result-card-light profession-main");
+  wrap.appendChild(el("h2", "result-section-title", "Топ-3 по вашим ответам"));
+  const professionGrid = el("div", "result-top-grid");
+  const matchCard = el("section", "result-card-light profession-main visual-profession");
   matchCard.innerHTML = `
+    <div class="profession-cover"><span>${getProfessionIcon(topProfession.key)}</span></div>
     <div>
-      <p class="result-muted">Ваше направление</p>
+      <p class="result-muted">Главное рекомендованное направление</p>
       <h2>${topProfession.name}</h2>
     </div>
     <div class="match-badge">
-      <span>${topProfession.matchLabel}</span>
+      <span>совместимость</span>
       <strong>${topProfession.percent}%</strong>
     </div>
     <div class="chips-row">
       ${topProfession.traits.map((trait) => `<span>${trait}</span>`).join("")}
     </div>
-    <div class="result-emoji-row"><span>✨ интерес</span><span>🧭 понятный путь</span><span>💼 новая работа</span></div>
+    <div class="why-fit-grid">
+      ${topProfession.qualities.slice(0, 3).map((item) => `<div><span>✓</span><p>${item}</p></div>`).join("")}
+    </div>
   `;
-  topGrid.appendChild(matchCard);
+  professionGrid.appendChild(matchCard);
 
   const topThree = el("section", "result-card-dark top-three");
   topThree.innerHTML = `
-    <p class="result-muted dark">Топ-3 по вашим ответам</p>
+    <p class="result-muted dark">Еще подходящие варианты</p>
     ${result.professions
       .map(
         (profession, index) => `
@@ -2009,33 +2347,51 @@ function renderResult() {
       )
       .join("")}
   `;
-  topGrid.appendChild(topThree);
-  wrap.appendChild(topGrid);
+  professionGrid.appendChild(topThree);
+  wrap.appendChild(professionGrid);
 
-  const middleGrid = el("div", "result-two-grid");
-  const money = el("section", "result-card-dark money-card");
+  const firstCta = button(state.consultationRequested ? "Заявка отправлена" : "Получить консультацию по направлению", "primary", () => {
+    state.consultationRequested = true;
+    render();
+  });
+  firstCta.disabled = state.consultationRequested;
+  wrap.appendChild(firstCta);
+
+  const salaryLevels = buildSalaryLevels(topProfession);
+  const money = el("section", "salary-growth-section");
   money.innerHTML = `
-    <h3>Доход</h3>
-    <div class="salary-grid">
-      <div class="salary-box"><span>Старт</span><strong>от ${topProfession.salary}</strong></div>
-      <div class="salary-box accent"><span>Через 2–3 года</span><strong>${topProfession.salaryPotential}</strong></div>
+    <div class="salary-growth-head">
+      <h2>Сколько вы сможете зарабатывать в новой профессии</h2>
+      <p><span>✦</span> Доход зависит от практики, портфолио и формата работы. Начать можно с junior-задач и постепенно расти в роли.</p>
     </div>
-    <p>Рост зависит от практики, портфолио, собеседований и выбранного формата работы.</p>
+    <div class="salary-growth-grid">
+      ${salaryLevels
+        .map(
+          (item) => `
+            <div class="salary-stage ${item.className}">
+              <strong>${item.amount}</strong>
+              <div><span>${item.role}</span><small>${item.period}</small></div>
+            </div>
+          `,
+        )
+        .join("")}
+    </div>
   `;
-  middleGrid.appendChild(money);
+  wrap.appendChild(money);
 
+  const middleGrid = el("div", "result-two-grid result-tasks-grid");
   const tasks = el("section", "result-card-light task-card");
   tasks.innerHTML = `
-    <h2>Чем вы будете заниматься</h2>
+    <h2>Задачи из жизни</h2>
     <div class="task-grid">
-      ${topProfession.realTasks.map((item) => `<div class="task-pill"><span>✅</span><strong>${item}</strong></div>`).join("")}
+      ${topProfession.realTasks.map((item, index) => `<div class="task-pill"><span>${["🧩", "⚙️", "🚀", "📌"][index] || "✅"}</span><strong>${item}</strong></div>`).join("")}
     </div>
-    <p>${topProfession.duties}</p>
+    <div class="specialist-flow"><span>задача</span><i></i><span>инструмент</span><i></i><span>результат</span></div>
   `;
   middleGrid.appendChild(tasks);
   wrap.appendChild(middleGrid);
 
-  wrap.appendChild(el("h2", "result-section-title", "Как может выглядеть путь"));
+  wrap.appendChild(el("h2", "result-section-title", "Дорожная карта"));
   const progress = el("section", "result-card-light progress-card");
   progress.innerHTML = `
     <div class="progress-rail">
@@ -2056,33 +2412,11 @@ function renderResult() {
       el(
         "article",
         "vacancy-shot",
-        `<div><span class="hh-badge">hh</span><small>${vacancy.meta}</small></div><h3>${vacancy.title}</h3><strong>${vacancy.salary}</strong><p>${vacancy.company}</p>`,
+        `<div><span class="hh-badge">hh</span><small>${vacancy.company}</small></div><h3>${vacancy.title}</h3><strong>${vacancy.salary}</strong><p>${vacancy.meta}</p><div class="vacancy-tags"><span>опыт: junior</span><span>${vacancy.meta.includes("удал") ? "удаленно" : "гибкий формат"}</span></div>`,
       ),
     );
   });
   wrap.appendChild(vacancies);
-
-  const reasonGrid = el("div", "result-two-grid");
-  const archetype = el("section", "result-card-light archetype-card compact-result");
-  archetype.innerHTML = `
-    <p class="result-muted">Почему это похоже на вас</p>
-    <h2>${result.title}</h2>
-    <div class="qualities-list light-list">
-      ${topProfession.qualities.map((item) => `<p>💡 ${item}</p>`).join("")}
-    </div>
-  `;
-  reasonGrid.appendChild(archetype);
-
-  const learning = el("section", "result-card-dark skills-card compact-result");
-  learning.innerHTML = `
-    <h3>Что поможет стартовать</h3>
-    <div class="mini-learning-grid">
-      ${topProfession.learn.map((item) => `<span>⚡ ${item}</span>`).join("")}
-    </div>
-    <div class="gradient-note">Не нужно “сначала стать другим человеком” — нужен понятный маршрут и практика.</div>
-  `;
-  reasonGrid.appendChild(learning);
-  wrap.appendChild(reasonGrid);
 
   wrap.appendChild(el("h2", "result-section-title", "Почему Skillbox"));
   const skillbox = el("section", "result-card-light skillbox-result");
@@ -2099,16 +2433,52 @@ function renderResult() {
   wrap.appendChild(skillbox);
 
   wrap.appendChild(el("h2", "result-section-title", "Истории студентов"));
-  const stories = el("div", "student-stories");
-  [
-    "Я освоил профессию в IT после 20 лет на железной дороге",
-    "Как воспитатель стала менеджером маркетплейсов",
-    "Аналитика любому возрасту покорна",
-    "Приняла оффер через месяц после обучения",
-  ].forEach((story, index) => {
-    stories.appendChild(el("article", "story-card", `<span>${["🚆", "🛍️", "📊", "🎉"][index]}</span><strong>${story}</strong><p>Реальная история успеха студента Skillbox</p>`));
+  const storyItems = getSuccessStories();
+  const stories = el("div", "success-stories-showcase");
+  storyItems.forEach((story, index) => {
+    const storyButton = button("", `success-story-card story-shift-${index % 4}`, () => {
+      state.expandedStoryId = story.id;
+      render();
+    });
+    storyButton.style.setProperty("--story-bg", story.gradient);
+    storyButton.style.setProperty("--story-photo", `url("${story.image}")`);
+    storyButton.innerHTML = `
+      <span class="story-emoji">${story.emoji}</span>
+      <span class="story-title">${story.title}</span>
+      <span class="story-meta">${story.profession}</span>
+    `;
+    stories.appendChild(storyButton);
   });
   wrap.appendChild(stories);
+
+  const expandedStory = storyItems.find((story) => story.id === state.expandedStoryId);
+  if (expandedStory) {
+    const modal = el("div", "story-modal", "");
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        state.expandedStoryId = null;
+        render();
+      }
+    });
+    const modalCard = el("section", "story-modal-card");
+    modalCard.innerHTML = `
+      <button class="story-close" type="button" aria-label="Закрыть">×</button>
+      <div class="story-modal-copy">
+        <p>История ${expandedStory.name}</p>
+        <h2>${expandedStory.title}</h2>
+        <div class="story-course"><span>${expandedStory.emoji}</span><strong>${expandedStory.profession}</strong></div>
+        <p>${expandedStory.story}</p>
+        <div class="story-modal-actions"><span>${expandedStory.accent}</span><span>реальная история Skillbox</span></div>
+      </div>
+      <div class="story-modal-photo" style="--story-bg: ${expandedStory.gradient}; --story-photo: url('${expandedStory.image}')"></div>
+    `;
+    modalCard.querySelector(".story-close").addEventListener("click", () => {
+      state.expandedStoryId = null;
+      render();
+    });
+    modal.appendChild(modalCard);
+    document.body.appendChild(modal);
+  }
 
   const cta = button(state.consultationRequested ? "Заявка отправлена" : "Оставить заявку на консультацию", "primary", () => {
     state.consultationRequested = true;
@@ -2137,10 +2507,11 @@ function renderOffer() {
   return wrap;
 }
 
-function choiceButton(option, selected, onClick) {
+function choiceButton(option, selected, onClick, disabled = false) {
   const node = document.createElement("button");
   node.type = "button";
   node.className = `choice${selected ? " selected" : ""}`;
+  node.disabled = disabled;
   node.addEventListener("click", onClick);
   node.innerHTML = `
     <span class="choice-mark">${selected ? "✓" : ""}</span>
@@ -2380,8 +2751,70 @@ function getNameMeaning(name = "") {
     федор: "Федор звучит основательно и тепло. В этом имени есть ощущение надежности и внутренней силы.",
     юрий: "Юрий часто связывают с практичностью и движением. В этом имени есть готовность перейти от мысли к действию.",
     ярослав: "Ярослав звучит ярко и сильно. В этом имени есть потенциал проявиться заметнее и смелее.",
+    агата: "Агата связывается с добротой и внутренней цельностью. В этом имени есть спокойная сила, которая раскрывается постепенно.",
+    аглая: "Аглая звучит светло и заметно. В этом имени есть ощущение человека, которому важно проявляться по-своему.",
+    ада: "Ада короткое и сильное имя. В нем есть ясность, собранность и право выбирать свой маршрут.",
+    азалия: "Азалия ассоциируется с красотой и стойкостью. В этом имени есть способность расти даже в непростые периоды.",
+    айлин: "Айлин звучит мягко и светло. В этом имени есть ощущение внутреннего тепла и движения к новому.",
+    аксинья: "Аксинья близка к Ксении и идее открытости. В этом имени есть готовность входить в новый опыт.",
+    анфиса: "Анфиса ассоциируется с цветением. Хороший образ для момента, когда хочется раскрыться в новой роли.",
+    ариана: "Ариана звучит уверенно и мелодично. В этом имени есть чувство достоинства и самостоятельного выбора.",
+    богдана: "Богдана означает “данная Богом”. В этом имени есть идея ценности, которую важно не обесценивать.",
+    василиса: "Василиса звучит достойно и уверенно. В этом имени есть ощущение права занимать свое место.",
+    влада: "Влада связана с влиянием и внутренней силой. Возможно, сейчас важно вернуть себе ощущение управления жизнью.",
+    владислава: "Владислава звучит уверенно и амбициозно. В этом имени есть потенциал выбрать более сильную траекторию.",
+    дарина: "Дарина звучит тепло и щедро. В этом имени есть энергия отдавать, но важно сохранять ресурс и для себя.",
+    есения: "Есения звучит мягко и природно. В этом имени есть ощущение живого темпа и бережного роста.",
+    злата: "Злата ассоциируется с золотом и ценностью. Хороший знак: не прятать то, что может стать вашей сильной стороной.",
+    кира: "Кира звучит ясно и сильно. В этом имени есть энергия самостоятельности и точного выбора.",
+    лилия: "Лилия ассоциируется с красотой и чистотой. В этом имени есть тонкость, которая может стать силой.",
+    милена: "Милена звучит мягко и тепло. В этом имени есть способность выбирать путь без лишней жесткости к себе.",
+    мирослава: "Мирослава связывает мир и признание. В этом имени есть желание жить спокойнее и заметнее одновременно.",
+    олеся: "Олеся звучит свободно и природно. В этом имени есть ощущение своего пути и внутренней независимости.",
+    римма: "Римма звучит собранно и достойно. В этом имени есть способность держать опору в период перемен.",
+    роза: "Роза ассоциируется с красотой и силой характера. В этом имени есть умение раскрываться не сразу, но ярко.",
+    снежана: "Снежана звучит спокойно и светло. В этом имени есть ясность, которая помогает не торопить важные решения.",
+    стефания: "Стефания связана с достоинством и признанием. Возможно, сейчас важно увидеть ценность своего опыта.",
+    таисия: "Таисия звучит мягко и загадочно. В этом имени есть глубина и способность тонко чувствовать перемены.",
+    элина: "Элина ассоциируется со светом и внутренней ясностью. Хороший символ для поиска нового направления.",
+    эльвира: "Эльвира звучит уверенно и ярко. В этом имени есть энергия самостоятельности и личного выбора.",
+    эльмира: "Эльмира связывается с миром и цельностью. В этом имени есть стремление к спокойной, но сильной позиции.",
+    эмилия: "Эмилия часто связывается с трудолюбием и движением. В этом имени есть потенциал постепенно выйти на новый уровень.",
+    юлиана: "Юлиана звучит живо и гибко. В этом имени есть способность адаптироваться и находить свой формат.",
+    ясмина: "Ясмина ассоциируется с цветением и мягкой силой. В этом имени есть потенциал раскрыться в своем темпе.",
+    ярослава: "Ярослава звучит ярко и сильно. В этом имени есть энергия проявиться смелее и выбрать больше пространства.",
+    альберт: "Альберт звучит основательно и умно. В этом имени есть опора на разум, опыт и зрелый выбор.",
+    арсений: "Арсений часто связывают с мужеством и зрелостью. В этом имени есть ресурс спокойно взять новый курс.",
+    артур: "Артур звучит уверенно и заметно. В этом имени есть энергия лидера, которому важно видеть смысл движения.",
+    богдан: "Богдан означает “данный Богом”. В этом имени есть идея ценности и права на свой путь.",
+    давид: "Давид звучит сильно и благородно. В этом имени есть стойкость, которая помогает проходить перемены без суеты.",
+    дамир: "Дамир ассоциируется с миром и устойчивостью. В этом имени есть способность искать решение без лишней борьбы.",
+    захар: "Захар звучит спокойно и надежно. В этом имени есть внутренняя основательность и верность себе.",
+    лев: "Лев говорит сам за себя: смелость, достоинство и право выбирать более сильную позицию.",
+    марк: "Марк звучит коротко и уверенно. В этом имени есть собранность и способность быстро схватывать главное.",
+    мирон: "Мирон ассоциируется с миром и спокойной силой. В этом имени есть ресурс двигаться без резких рывков.",
+    мирослав: "Мирослав связывает мир и признание. Возможно, вам важно найти путь, где будет и спокойствие, и рост.",
+    назар: "Назар звучит внимательно и точно. В этом имени есть способность замечать важные сигналы раньше других.",
+    платон: "Платон ассоциируется с глубиной и размышлением. В этом имени есть умение искать не быстрый, а верный ответ.",
+    родион: "Родион звучит основательно и спокойно. В этом имени есть ощущение внутреннего фундамента.",
+    савелий: "Савелий звучит мягко, но уверенно. В этом имени есть способность идти своим темпом и не терять себя.",
+    филипп: "Филипп ассоциируется с движением и характером. В этом имени есть энергия не застревать в старой роли.",
+    герман: "Герман звучит уверенно и собранно. В этом имени есть ощущение дисциплины и внутреннего порядка.",
+    игнат: "Игнат связан с огнем и внутренним импульсом. Возможно, сейчас важно вернуть то, что снова зажигает.",
+    ратмир: "Ратмир звучит сильно и спокойно. В этом имени есть способность защищать важное без лишнего напряжения.",
+    яков: "Яков звучит надежно и глубоко. В этом имени есть ресурс идти к переменам постепенно, но уверенно.",
   };
-  return meanings[key] || "Редкое имя часто помогает не растворяться в общем фоне. Возможно, именно эта индивидуальность сейчас и станет вашей точкой роста: в вас больше потенциала к переменам, чем кажется на усталом участке пути.";
+  return meanings[key] || getUniversalNameMeaning(key);
+}
+
+function getUniversalNameMeaning(key = "") {
+  if (!key) {
+    return "Имя — это первый личный штрих в диагностике. Дальше мы будем смотреть не на шаблоны, а на ваши ответы и реальное состояние.";
+  }
+  if (/[ая]$/.test(key)) {
+    return "В вашем имени есть ощущение личного ритма и характера. Пусть этот небольшой факт будет напоминанием: менять курс можно бережно и по-своему.";
+  }
+  return "В вашем имени есть собственный характер и звучание. Возможно, именно это сейчас важно сохранить: не подстраиваться под старый сценарий, а искать путь, который подходит вам.";
 }
 
 function getNameEmoji(name = "") {
@@ -2512,6 +2945,58 @@ function getNameEmoji(name = "") {
     федор: "🌳",
     юрий: "🧭",
     ярослав: "🔥",
+    агата: "🌿",
+    аглая: "✨",
+    ада: "📌",
+    азалия: "🌺",
+    айлин: "☀️",
+    аксинья: "🧭",
+    анфиса: "🌸",
+    ариана: "⭐",
+    богдана: "💎",
+    василиса: "👑",
+    влада: "⭐",
+    владислава: "⭐",
+    дарина: "🎁",
+    есения: "🌱",
+    злата: "✨",
+    кира: "🎯",
+    лилия: "🌸",
+    милена: "🌸",
+    мирослава: "🕊️",
+    олеся: "🌿",
+    римма: "📌",
+    роза: "🌹",
+    снежана: "❄️",
+    стефания: "👑",
+    таисия: "🌙",
+    элина: "☀️",
+    эльвира: "⭐",
+    эльмира: "🕊️",
+    эмилия: "⚙️",
+    юлиана: "🌸",
+    ясмина: "🌺",
+    ярослава: "🔥",
+    альберт: "🧠",
+    арсений: "💪",
+    артур: "⭐",
+    богдан: "💎",
+    давид: "🛡️",
+    дамир: "🕊️",
+    захар: "🌳",
+    лев: "🦁",
+    марк: "📌",
+    мирон: "🕊️",
+    мирослав: "🕊️",
+    назар: "👁️",
+    платон: "🧠",
+    родион: "🌳",
+    савелий: "🌿",
+    филипп: "⚡",
+    герман: "📌",
+    игнат: "🔥",
+    ратмир: "🛡️",
+    яков: "🌳",
   };
   return emojis[key] || "✨";
 }
@@ -2556,22 +3041,38 @@ function moveBefore(order, movedId, targetId) {
   return nextOrder;
 }
 
+function setupDrawingCanvas(canvas) {
+  const rect = canvas.getBoundingClientRect();
+  const ratio = window.devicePixelRatio || 1;
+  const width = Math.round(rect.width || 330);
+  const height = Math.round(rect.height || 170);
+  canvas.width = Math.round(width * ratio);
+  canvas.height = Math.round(height * ratio);
+  canvas.dataset.logicalWidth = String(width);
+  canvas.dataset.logicalHeight = String(height);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  return ctx;
+}
+
 function drawCanvas(ctx, canvas, points = []) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const width = Number(canvas.dataset.logicalWidth) || canvas.width;
+  const height = Number(canvas.dataset.logicalHeight) || canvas.height;
+  ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = "#fff";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, width, height);
   ctx.strokeStyle = "#e4e7e4";
   ctx.lineWidth = 1;
-  for (let x = 30; x < canvas.width; x += 54) {
+  for (let x = 30; x < width; x += 54) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
-    ctx.lineTo(x, canvas.height);
+    ctx.lineTo(x, height);
     ctx.stroke();
   }
-  for (let y = 34; y < canvas.height; y += 34) {
+  for (let y = 34; y < height; y += 34) {
     ctx.beginPath();
     ctx.moveTo(0, y);
-    ctx.lineTo(canvas.width, y);
+    ctx.lineTo(width, y);
     ctx.stroke();
   }
   ctx.strokeStyle = "#151515";
@@ -2586,8 +3087,10 @@ function drawCanvas(ctx, canvas, points = []) {
   ctx.stroke();
   if (!points.length) {
     ctx.fillStyle = "#69706f";
-    ctx.font = "700 15px Graphik LC TT, Graphik, sans-serif";
-    ctx.fillText("Нарисуйте линию здесь", 74, 92);
+    ctx.font = "700 17px Graphik LC TT, Graphik, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("Нарисуйте линию здесь", width / 2, height / 2);
   }
 }
 
@@ -2873,6 +3376,7 @@ function reset() {
   state.lead = { name: "", email: "", phone: "", consent: false };
   state.discount = null;
   state.consultationRequested = false;
+  state.expandedStoryId = null;
   render();
   scrollToScreenTop();
 }
