@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Светлая иллюстрация паузы для тела">
+  <rect width="900" height="520" fill="#f6fbf8"/>
+  <circle cx="690" cy="150" r="132" fill="#b8ff2c" opacity=".22"/>
+  <circle cx="238" cy="380" r="126" fill="#67efcf" opacity=".22"/>
+  <path d="M188 398c118-104 236-148 354-132 82 12 142 46 206 18" fill="none" stroke="#20c66b" stroke-width="18" stroke-linecap="round" opacity=".28"/>
+  <g fill="#ffffff" stroke="#dedeee" stroke-width="4">
+    <rect x="170" y="286" width="560" height="106" rx="38"/>
+    <circle cx="346" cy="232" r="82"/>
+  </g>
+  <path d="M318 238c20 20 42 30 66 30s46-10 66-30" fill="none" stroke="#050506" stroke-opacity=".55" stroke-width="12" stroke-linecap="round"/>
+  <path d="M286 360h328" stroke="#3d3bff" stroke-width="16" stroke-linecap="round" opacity=".76"/>
+  <path d="M654 190c42-60 96-90 162-90-18 70-66 112-144 126" fill="#20c66b" opacity=".58"/>
+  <path d="M648 228c40-26 82-48 128-66" fill="none" stroke="#256b48" stroke-opacity=".38" stroke-width="8" stroke-linecap="round"/>
+</svg>

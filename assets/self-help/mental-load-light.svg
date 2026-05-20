@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Светлая иллюстрация ментальной нагрузки">
+  <rect width="900" height="520" rx="0" fill="#f7f7ff"/>
+  <circle cx="720" cy="120" r="120" fill="#fcaca9" opacity=".25"/>
+  <circle cx="190" cy="410" r="130" fill="#3d3bff" opacity=".08"/>
+  <g fill="#ffffff" stroke="#dedeee" stroke-width="4">
+    <rect x="115" y="108" width="226" height="94" rx="30"/>
+    <rect x="558" y="118" width="226" height="94" rx="30"/>
+    <rect x="196" y="318" width="508" height="92" rx="30"/>
+  </g>
+  <path d="M278 302c22-88 92-142 188-142 102 0 174 62 188 156" fill="none" stroke="#3d3bff" stroke-width="18" stroke-linecap="round" opacity=".18"/>
+  <path d="M270 302c42-54 96-80 162-78 76 2 134 34 176 96" fill="none" stroke="#3d3bff" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="450" cy="260" r="92" fill="#ffffff" stroke="#050506" stroke-opacity=".16" stroke-width="4"/>
+  <path d="M386 262c32-44 88-44 128 0M410 304h80" fill="none" stroke="#050506" stroke-opacity=".55" stroke-width="12" stroke-linecap="round"/>
+  <path d="M172 156h110M616 166h112M276 365h348" stroke="#5c5c66" stroke-opacity=".34" stroke-width="14" stroke-linecap="round"/>
+</svg>

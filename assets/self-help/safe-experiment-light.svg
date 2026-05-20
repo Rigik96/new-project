@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Светлая иллюстрация безопасного эксперимента">
+  <rect width="900" height="520" fill="#fff8f8"/>
+  <circle cx="190" cy="142" r="128" fill="#fcaca9" opacity=".28"/>
+  <circle cx="710" cy="392" r="148" fill="#3d3bff" opacity=".08"/>
+  <g fill="#ffffff" stroke="#dedeee" stroke-width="4">
+    <rect x="154" y="132" width="592" height="280" rx="54"/>
+    <rect x="218" y="196" width="164" height="144" rx="34"/>
+    <rect x="518" y="196" width="164" height="144" rx="34"/>
+  </g>
+  <path d="M388 268h116" stroke="#3d3bff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M480 236l40 32-40 32" fill="none" stroke="#3d3bff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M258 272l34 34 62-86M558 272l34 34 62-86" fill="none" stroke="#20c66b" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M254 376h392" stroke="#050506" stroke-opacity=".2" stroke-width="14" stroke-linecap="round"/>
+</svg>
